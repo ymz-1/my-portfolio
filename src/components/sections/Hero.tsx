@@ -1,0 +1,162 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { profile } from "@/content/data";
+import { ArrowDownIcon, ArrowUpRightIcon, Icon } from "@/components/ui/icons";
+
+type FloatItemProps = {
+  className: string;
+  delay?: number;
+  children: React.ReactNode;
+};
+
+function FloatItem({ className, delay = 0, children }: FloatItemProps) {
+  return (
+    <div
+      className={`absolute animate-float ${className}`}
+      style={{ animationDelay: `${delay}s` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Hero() {
+  const { t, pick } = useLanguage();
+
+  return (
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16"
+    >
+      {/* Background motifs */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+        <div className="absolute inset-0 scanlines opacity-40" />
+        <div className="absolute -left-32 top-10 h-96 w-96 rounded-full bg-brand/20 blur-[120px]" />
+        <div className="absolute -right-20 bottom-0 h-[28rem] w-[28rem] rounded-full bg-brand-2/20 blur-[140px]" />
+        <div className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto flex w-full max-w-xl flex-col items-center px-6">
+        {/* Orbit rings + floating items (desktop) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 z-0 hidden -translate-x-1/2 -translate-y-1/2 md:block"
+        >
+          <div className="relative h-[600px] w-[600px]">
+            <div className="absolute inset-0 rounded-full border border-dashed border-white/10 animate-spin-slow" />
+            <div className="absolute inset-[70px] rounded-full border border-dashed border-white/[0.09]" />
+            <div className="absolute inset-[150px] rounded-full border border-dashed border-white/[0.06]" />
+
+            <FloatItem className="left-[6%] top-[40%]" delay={0}>
+              <span className="pixel-border grid h-10 w-10 place-items-center bg-surface/80 text-brand">
+                <Icon name="github" className="h-5 w-5" />
+              </span>
+            </FloatItem>
+            <FloatItem className="right-[8%] top-[30%]" delay={1.2}>
+              <span className="pixel-border grid h-10 w-10 place-items-center bg-surface/80 text-accent">
+                <Icon name="bilibili" className="h-5 w-5" />
+              </span>
+            </FloatItem>
+            <FloatItem className="right-[16%] bottom-[16%]" delay={0.6}>
+              <span className="block h-5 w-5 rotate-12 bg-gradient-to-br from-brand to-brand-2 pixel-border" />
+            </FloatItem>
+            <FloatItem className="left-[16%] bottom-[14%]" delay={1.8}>
+              <span className="relative flex h-4 w-4">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex h-4 w-4 rounded-full bg-accent" />
+              </span>
+            </FloatItem>
+            <FloatItem className="left-[34%] top-[4%]" delay={0.9}>
+              <span className="block h-3 w-3 rounded-full bg-brand" />
+            </FloatItem>
+          </div>
+        </div>
+
+        {/* Name card */}
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="glass relative z-10 w-full max-w-md rounded-2xl p-8 shadow-2xl shadow-black/40 sm:p-10"
+        >
+          {/* Avatar overlapping the corner */}
+          <div className="pixel-border absolute -left-5 -top-6 grid h-16 w-16 place-items-center bg-gradient-to-br from-brand to-brand-2 font-pixel text-sm text-background">
+            {profile.avatarInitials}
+          </div>
+
+          <p className="font-mono text-sm text-muted">{t.hero.nameLabel}</p>
+          <h1 className="mt-2 text-balance text-4xl font-bold tracking-tight sm:text-5xl">
+            <span className="text-gradient">{pick(profile.nameLocalized)}</span>
+          </h1>
+
+          <div className="my-6 h-px w-full bg-gradient-to-r from-brand/60 via-white/10 to-transparent" />
+
+          <p className="font-mono text-sm text-muted">{t.hero.roleLabel}</p>
+          <ul className="mt-3 space-y-1.5 text-right">
+            {profile.roles.map((role, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.45, delay: 0.3 + i * 0.08 }}
+                className="text-lg font-medium text-foreground/90 transition-colors hover:text-brand sm:text-xl"
+              >
+                {pick(role)}
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+
+        {/* CTAs + Now */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="relative z-10 mt-8 flex flex-col items-center gap-4"
+        >
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-2 px-6 py-3 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
+            >
+              {t.hero.cta}
+              <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-white/30 hover:bg-white/10"
+            >
+              {t.hero.ctaSecondary}
+            </a>
+          </div>
+
+          <div className="inline-flex max-w-full items-center gap-3 rounded-xl border border-dashed border-white/15 bg-white/5 px-4 py-2.5 font-mono text-xs text-muted">
+            <span className="shrink-0 rounded-sm bg-brand/15 px-2 py-1 font-pixel text-[8px] leading-none text-brand">
+              {t.hero.now}
+            </span>
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+            <span className="truncate">{pick(profile.now)}</span>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.a
+        href="#social"
+        aria-label={t.hero.scroll}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted sm:flex"
+      >
+        {t.hero.scroll}
+        <ArrowDownIcon className="h-4 w-4 animate-bounce" />
+      </motion.a>
+    </section>
+  );
+}

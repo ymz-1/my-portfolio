@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio / 个人作品集
 
-## Getting Started
+一个**深色 · 紫灰**、中英双语、带**独立游戏开发者 / 自媒体**气质（像素风点缀）的个人作品集单页站。设计借鉴 [qzq.at](https://www.qzq.at/) 的叙事结构与名片式 Hero，迁移到雾面紫灰的深色设计语言。
 
-First, run the development server:
+A dark, dusty-purple, bilingual (中文 / English) single-page developer portfolio with an indie-creator / pixel-game vibe. Inspired by the storytelling layout of [qzq.at](https://www.qzq.at/).
+
+## 技术栈 / Tech Stack
+
+- **Next.js 16** (App Router) + **TypeScript**
+- **Tailwind CSS v4**（设计令牌写在 `globals.css` 的 `@theme inline`）
+- **Framer Motion** — 进场 / 滚动 / 微交互动画
+- **Three.js + React Three Fiber + drei** — 可选的低多边形 3D 场景（`components/three/HeroScene.tsx`）
+- 自建组件（借鉴 Magic UI / Aceternity / cult-ui）
+
+## 设计风格 / Design Language
+
+- 配色：雾面紫灰（主色 `#a78bfa`、次色 `#7c7a90`、点缀 `#c4b5fd`），深色背景，仅深色主题
+- 像素游戏感：像素字体（Press Start 2P，仅用于小标签/数字）、CRT 扫描线、8-bit 像素描边、闪烁光标
+- 质感：全屏胶片噪点（grain）叠层、玻璃拟态卡片、发光圆形与网格母题
+- Hero 为 qzq.at 式「名片卡片」：姓名 + 角色列表，外围同心虚线圆环与漂浮小图标
+
+## 快速开始 / Getting Started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+其它命令：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build    # 生产构建
+npm run start    # 运行生产构建
+npm run lint     # 代码检查
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 如何替换为你自己的内容 / Customize
 
-## Learn More
+几乎所有文字与数据都集中在一个文件里：
 
-To learn more about Next.js, take a look at the following resources:
+### `src/content/data.ts`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `profile` — 姓名、头像缩写、所在地、邮箱、角色标签、自我介绍、`now` 近况状态
+- `socialCards` — 首页 qzq.at 式频道卡片（平台、昵称、多项数据、简介）
+- `socials` — About 区的简易社交卡片
+- `skillGroups` — 技能分组与熟练度（0–100）
+- `projects` — 项目列表（标题、描述、标签、链接、封面渐变色）
+- `experiences` — 工作经历时间线
+- `timeAllocation` / `interests` / `counters` — 数据可视化用的数字
+- `contactLinks` — 底部 / 联系区的社交链接
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> 带 `{ zh, en }` 的字段会随语言切换自动显示对应文本。
 
-## Deploy on Vercel
+### 其它可改的地方
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- UI 文案（按钮、标题、标签等）：`src/lib/i18n/dictionaries/zh.ts` 与 `en.ts`
+- 配色 / 字体 / 设计令牌 / grain / 扫描线 / 像素工具：`src/app/globals.css`
+- SEO / OG 元信息与字体：`src/app/layout.tsx`
+- 3D 造型与配色：`src/components/three/HeroScene.tsx`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 目录结构 / Structure
+
+```
+src/
+  app/                 # 布局、全局样式、页面入口
+  components/
+    layout/            # 导航栏、页脚、回到顶部、章节容器
+    sections/          # Hero / SocialCards / About / TechStack / Projects / Experience / Stats / Contact
+    three/             # React Three Fiber 3D 场景（HeroScene）
+    ui/                # 复用 UI 组件（GlowCard、Marquee、NumberTicker、SkillBar、icons…）
+  content/data.ts      # ★ 集中内容（改这里）
+  lib/
+    i18n/              # 双语 Provider 与字典（zh / en）
+    utils.ts           # cn() 工具
+    useMediaQuery.ts   # 响应式断点 hook
+```
+
+## 页面分区 / Sections
+
+首页（Home）名片卡片 → 频道卡片（Channels）→ 关于（About）→ 技术栈（Stack）→ 项目（Projects）→ 经历（Experience）→ 数据（Stats）→ 联系（Contact）。
+
+## 备注 / Notes
+
+- 仅深色主题。
+- 双语通过轻量 `LanguageProvider`（Context + 字典）实现，导航栏右上角切换，偏好保存在 `localStorage`。
+- 单页作品集，未接入文章 CMS；当前为占位内容。
