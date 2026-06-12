@@ -1,9 +1,5 @@
 # Personal Portfolio / 个人作品集
 
-一个**深色 · 紫灰**、中英双语、带**独立游戏开发者 / 自媒体**气质（像素风点缀）的个人作品集单页站。设计借鉴 [qzq.at](https://www.qzq.at/) 的叙事结构与名片式 Hero，迁移到雾面紫灰的深色设计语言。
-
-A dark, dusty-purple, bilingual (中文 / English) single-page developer portfolio with an indie-creator / pixel-game vibe. Inspired by the storytelling layout of [qzq.at](https://www.qzq.at/).
-
 ## 技术栈 / Tech Stack
 
 - **Next.js 16** (App Router) + **TypeScript**
