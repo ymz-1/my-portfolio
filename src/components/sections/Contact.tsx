@@ -1,12 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { GlowCard } from "@/components/ui/GlowCard";
 import { Reveal } from "@/components/ui/Reveal";
-import { Icon } from "@/components/ui/icons";
-import { contactLinks, profile } from "@/content/data";
+import { contactCard } from "@/content/data";
+import { cn } from "@/lib/utils";
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { pick } = useLanguage();
 
   return (
     <section id="contact" className="relative scroll-mt-20 py-24 sm:py-32">
@@ -14,42 +16,81 @@ export function Contact() {
         <div className="absolute left-1/2 top-1/2 h-72 w-[36rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[120px]" />
       </div>
 
-      <div className="mx-auto w-full max-w-3xl px-6 text-center">
+      <div className="mx-auto w-full max-w-4xl px-6">
         <Reveal>
-          <span className="mb-4 inline-block font-pixel text-[10px] leading-none text-brand">
-            {"// say-hi"}
-          </span>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            {t.contact.title}
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-pretty text-base text-muted sm:text-lg">
-            {t.contact.subtitle}
-          </p>
+          <GlowCard className="p-8 sm:p-10">
+            <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+              {/* 左侧：公众号二维码 */}
+              <div className="flex shrink-0 flex-col items-center md:w-[11rem]">
+                <div
+                  className={cn(
+                    "grid aspect-square w-36 place-items-center rounded-xl sm:w-40",
+                    contactCard.qrSrc
+                      ? "bg-white p-1 shadow-lg shadow-black/20"
+                      : "border border-dashed border-white/15 bg-white/[0.04]",
+                  )}
+                >
+                  {contactCard.qrSrc ? (
+                    <Image
+                      src={contactCard.qrSrc}
+                      alt={pick(contactCard.qrCaption)}
+                      width={160}
+                      height={160}
+                      className="h-full w-full rounded-[10px] object-cover"
+                    />
+                  ) : (
+                    <span className="select-none font-mono text-xs text-white/20">
+                      QR
+                    </span>
+                  )}
+                </div>
+                <p className="mt-3 text-center text-sm text-muted">
+                  {pick(contactCard.qrCaption)}
+                </p>
+              </div>
 
-          <a
-            href={`mailto:${profile.email}`}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-2 px-8 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
-          >
-            <Icon name="mail" className="h-4 w-4" />
-            {t.contact.cta}
-          </a>
+              {/* 右侧：介绍文案 */}
+              <div className="min-w-0 flex-1">
+                <h2 className="text-2xl font-bold tracking-tight sm:text-[1.75rem]">
+                  {pick(contactCard.title)}
+                </h2>
 
-          <p className="mt-4 font-mono text-sm text-muted">{profile.email}</p>
+                <div className="mt-5 space-y-4 text-[15px] leading-7 text-muted">
+                  <p className="text-foreground/90">{pick(contactCard.greeting)}</p>
+                  <p>{pick(contactCard.intro)}</p>
 
-          <div className="mt-8 flex items-center justify-center gap-3">
-            {contactLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/5 text-muted transition-colors hover:border-brand/50 hover:text-brand"
-              >
-                <Icon name={link.icon} className="h-5 w-5" />
-              </a>
-            ))}
-          </div>
+                  <div>
+                    <p className="font-medium text-foreground">
+                      {pick(contactCard.backgroundLabel)}
+                    </p>
+                    <ul className="mt-1 list-none space-y-0.5 pl-0">
+                      {contactCard.backgroundItems.map((item) => (
+                        <li key={pick(item)} className="flex gap-2">
+                          <span aria-hidden className="text-brand/60">
+                            -
+                          </span>
+                          <span>{pick(item)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="font-medium text-foreground">
+                      {pick(contactCard.nowLabel)}
+                    </p>
+                    <p className="mt-1">{pick(contactCard.nowText)}</p>
+                  </div>
+                </div>
+
+                <hr className="my-6 border-white/10" />
+
+                <p className="text-[15px] font-medium text-brand">
+                  {pick(contactCard.footer)}
+                </p>
+              </div>
+            </div>
+          </GlowCard>
         </Reveal>
       </div>
     </section>

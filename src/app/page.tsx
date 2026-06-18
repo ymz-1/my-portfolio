@@ -6,8 +6,6 @@ import { SocialCards } from "@/components/sections/SocialCards";
 import { About } from "@/components/sections/About";
 import { TechStack } from "@/components/sections/TechStack";
 import { Projects } from "@/components/sections/Projects";
-import { Experience } from "@/components/sections/Experience";
-import { Stats } from "@/components/sections/Stats";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -16,12 +14,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <SocialCards />
+        <Projects />
         <About />
         <TechStack />
-        <Projects />
-        <Experience />
-        <Stats />
+        <SocialCards />
         <Contact />
       </main>
       <Footer />

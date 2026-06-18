@@ -25,35 +25,41 @@ const pressStart = Press_Start_2P({
   weight: ["400"],
 });
 
+const siteName = "你的名字 · C++ / 工具开发者";
+const siteTitle = "你的名字 — C++ / 工具开发者";
+const siteDescription =
+  "C++ / 工具开发者的个人站。专注 MFC / Win32 桌面工具与游戏 UGC 开发，正在探索 AI 工具与独立开发，并记录折腾过程。";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
   title: {
-    default: "Your Name — Developer & Creator",
-    template: "%s · Your Name",
+    default: siteTitle,
+    template: "%s · 你的名字",
   },
-  description:
-    "Personal site of Your Name — a developer building things for the web. Projects, tech stack, experience and more.",
+  description: siteDescription,
   keywords: [
-    "developer",
-    "portfolio",
-    "frontend",
-    "full-stack",
+    "C++",
+    "MFC",
+    "Win32",
+    "工具开发",
+    "tooling developer",
+    "游戏 UGC",
+    "AI 工具",
+    "独立开发",
     "Next.js",
     "blog",
   ],
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "你的名字" }],
   openGraph: {
     type: "website",
-    title: "Your Name — Developer & Creator",
-    description:
-      "Personal site of Your Name — a developer building things for the web.",
-    siteName: "Your Name",
+    title: siteTitle,
+    description: siteDescription,
+    siteName,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your Name — Developer & Creator",
-    description:
-      "Personal site of Your Name — a developer building things for the web.",
+    title: siteTitle,
+    description: siteDescription,
   },
 };
 

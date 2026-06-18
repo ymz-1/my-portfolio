@@ -75,6 +75,9 @@ export function Navbar() {
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
+                <span className="mr-1" aria-hidden>
+                  {t.navIcon[id]}
+                </span>
                 {t.nav[id]}
               </a>
             </li>
@@ -136,7 +139,10 @@ export function Navbar() {
                         : "text-muted hover:bg-white/5 hover:text-foreground",
                     )}
                   >
-                    {t.nav[id]}
+                    <span className="mr-1" aria-hidden>
+                  {t.navIcon[id]}
+                </span>
+                {t.nav[id]}
                   </a>
                 </li>
               ))}

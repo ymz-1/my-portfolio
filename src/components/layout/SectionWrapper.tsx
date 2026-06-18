@@ -7,6 +7,8 @@ type SectionWrapperProps = {
   title?: string;
   subtitle?: string;
   eyebrow?: string;
+  eyebrowIcon?: ReactNode;
+  titleIcon?: ReactNode;
   children: ReactNode;
   className?: string;
   containerClassName?: string;
@@ -17,26 +19,32 @@ export function SectionWrapper({
   title,
   subtitle,
   eyebrow,
+  eyebrowIcon,
+  titleIcon,
   children,
   className,
   containerClassName,
 }: SectionWrapperProps) {
+  const showHeader = title || subtitle || eyebrow;
+
   return (
     <section
       id={id}
       className={cn("relative scroll-mt-20 py-24 sm:py-32", className)}
     >
       <div className={cn("mx-auto w-full max-w-6xl px-6", containerClassName)}>
-        {(title || subtitle) && (
+        {showHeader && (
           <Reveal className="mb-14 max-w-2xl">
             {eyebrow && (
-              <span className="mb-4 inline-block font-pixel text-[10px] leading-none text-brand">
+              <span className="mb-4 inline-flex items-center gap-2 font-pixel text-[10px] leading-none text-brand">
+                {eyebrowIcon}
                 {eyebrow}
               </span>
             )}
             {title && (
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-                {title}
+              <h2 className="flex items-center gap-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+                {titleIcon}
+                <span>{title}</span>
               </h2>
             )}
             {subtitle && (

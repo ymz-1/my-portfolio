@@ -9,20 +9,20 @@ import { Reveal } from "@/components/ui/Reveal";
 import { skillGroups } from "@/content/data";
 
 const techPills = [
-  "indie dev",
-  "devlog",
-  "game jam",
-  "TypeScript",
-  "React",
+  "C++",
+  "MFC",
+  "Win32",
+  "STL",
+  "multithreading",
+  "Lua",
+  "UGC tooling",
+  "Python",
+  "automation",
+  "Git",
+  "AI-assisted dev",
+  "Next.js",
   "Three.js",
-  "pixel art",
-  "Godot",
-  "shaders",
-  "lo-fi",
-  "Rust",
-  "creative coding",
-  "Figma",
-  "side projects",
+  "devlog",
 ];
 
 export function TechStack() {

@@ -1,9 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
-import { profile } from "@/content/data";
-import { ArrowDownIcon, ArrowUpRightIcon, Icon } from "@/components/ui/icons";
+import { heroCtas, profile } from "@/content/data";
+import { ArrowDownIcon, Icon } from "@/components/ui/icons";
+import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
+
+const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
+  ssr: false,
+  loading: () => null,
+});
 
 type FloatItemProps = {
   className: string;
@@ -39,6 +47,16 @@ export function Hero() {
         <div className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
       </div>
 
+      {/* 3D scene — client-only, decorative background (desktop) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 hidden opacity-60 md:block"
+      >
+        <ErrorBoundary>
+          <HeroScene />
+        </ErrorBoundary>
+      </div>
+
       <div className="relative mx-auto flex w-full max-w-xl flex-col items-center px-6">
         {/* Orbit rings + floating items (desktop) */}
         <div
@@ -57,7 +75,7 @@ export function Hero() {
             </FloatItem>
             <FloatItem className="right-[8%] top-[30%]" delay={1.2}>
               <span className="pixel-border grid h-10 w-10 place-items-center bg-surface/80 text-accent">
-                <Icon name="bilibili" className="h-5 w-5" />
+                <Icon name="wechat" className="h-5 w-5" />
               </span>
             </FloatItem>
             <FloatItem className="right-[16%] bottom-[16%]" delay={0.6}>
@@ -80,59 +98,73 @@ export function Hero() {
           initial={{ opacity: 0, y: 24, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="glass relative z-10 w-full max-w-md rounded-2xl p-8 shadow-2xl shadow-black/40 sm:p-10"
+          className="glass relative z-10 w-full max-w-md rounded-2xl p-8 text-center shadow-2xl shadow-black/40 sm:p-10"
         >
           {/* Avatar overlapping the corner */}
-          <div className="pixel-border absolute -left-5 -top-6 grid h-16 w-16 place-items-center bg-gradient-to-br from-brand to-brand-2 font-pixel text-sm text-background">
-            {profile.avatarInitials}
+          <div className="pixel-border absolute -left-5 -top-6 h-16 w-16 overflow-hidden bg-gradient-to-br from-brand to-brand-2">
+            <Image
+              src={profile.avatarSrc}
+              alt={pick(profile.nameLocalized)}
+              width={64}
+              height={64}
+              className="h-full w-full object-cover"
+              priority
+            />
           </div>
 
-          <p className="font-mono text-sm text-muted">{t.hero.nameLabel}</p>
-          <h1 className="mt-2 text-balance text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">
             <span className="text-gradient">{pick(profile.nameLocalized)}</span>
           </h1>
 
-          <div className="my-6 h-px w-full bg-gradient-to-r from-brand/60 via-white/10 to-transparent" />
+          {/* Identity / headline */}
+          <p className="mt-4 text-pretty text-base font-medium text-foreground/90 sm:text-lg">
+            {pick(profile.headline)}
+          </p>
 
-          <p className="font-mono text-sm text-muted">{t.hero.roleLabel}</p>
-          <ul className="mt-3 space-y-1.5 text-right">
-            {profile.roles.map((role, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: 12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.45, delay: 0.3 + i * 0.08 }}
-                className="text-lg font-medium text-foreground/90 transition-colors hover:text-brand sm:text-xl"
-              >
-                {pick(role)}
-              </motion.li>
-            ))}
-          </ul>
+          {/* Quote */}
+          <p className="mx-auto mt-5 max-w-sm text-pretty text-sm italic leading-relaxed text-muted">
+            “{pick(profile.quote)}”
+          </p>
+
+          <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          {/* Experience summary */}
+          <p className="font-mono text-xs text-muted sm:text-sm">
+            {pick(profile.experienceSummary)}
+          </p>
+
+          {/* CTAs: GitHub / 公众号 / Email */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            {heroCtas.map((cta, i) => {
+              const isPrimary = i === 0;
+              return (
+                <a
+                  key={pick(cta.label)}
+                  href={cta.url}
+                  {...(cta.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className={
+                    isPrimary
+                      ? "group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-2 px-5 py-2.5 text-sm font-semibold text-background transition-transform hover:scale-[1.04]"
+                      : "group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand/50 hover:bg-white/10"
+                  }
+                >
+                  <Icon name={cta.icon} className="h-4 w-4" />
+                  {pick(cta.label)}
+                </a>
+              );
+            })}
+          </div>
         </motion.div>
 
-        {/* CTAs + Now */}
+        {/* Now status */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="relative z-10 mt-8 flex flex-col items-center gap-4"
         >
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-2 px-6 py-3 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
-            >
-              {t.hero.cta}
-              <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-white/30 hover:bg-white/10"
-            >
-              {t.hero.ctaSecondary}
-            </a>
-          </div>
-
           <div className="inline-flex max-w-full items-center gap-3 rounded-xl border border-dashed border-white/15 bg-white/5 px-4 py-2.5 font-mono text-xs text-muted">
             <span className="shrink-0 rounded-sm bg-brand/15 px-2 py-1 font-pixel text-[8px] leading-none text-brand">
               {t.hero.now}
@@ -147,7 +179,7 @@ export function Hero() {
       </div>
 
       <motion.a
-        href="#social"
+        href="#projects"
         aria-label={t.hero.scroll}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

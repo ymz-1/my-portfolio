@@ -52,6 +52,15 @@ export function BilibiliIcon(props: IconProps) {
   );
 }
 
+export function WeChatIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M9.2 4C5.05 4 1.7 6.79 1.7 10.23c0 1.94 1.07 3.67 2.78 4.83l-.66 2.05a.32.32 0 0 0 .47.37l2.4-1.3c.74.2 1.52.32 2.33.34a5.4 5.4 0 0 1-.2-1.47c0-3.16 3-5.7 6.74-5.7.23 0 .46.02.69.04C15.32 6.07 12.55 4 9.2 4ZM6.6 8.65a1.04 1.04 0 1 1 0-2.08 1.04 1.04 0 0 1 0 2.08Zm5.1 0a1.04 1.04 0 1 1 0-2.08 1.04 1.04 0 0 1 0 2.08Z" />
+      <path d="M22.3 15.2c0-2.84-2.74-5.15-6.12-5.15s-6.13 2.31-6.13 5.15 2.75 5.15 6.13 5.15c.7 0 1.38-.1 2.01-.29l2 1.08a.27.27 0 0 0 .4-.31l-.53-1.66c1.4-.96 2.24-2.37 2.24-3.97Zm-8.18-1.02a.87.87 0 1 1 0-1.74.87.87 0 0 1 0 1.74Zm4.12 0a.87.87 0 1 1 0-1.74.87.87 0 0 1 0 1.74Z" />
+    </svg>
+  );
+}
+
 export function LinkIcon(props: IconProps) {
   return (
     <svg
@@ -106,12 +115,30 @@ export function ArrowDownIcon(props: IconProps) {
   );
 }
 
+export function WrenchIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z" />
+    </svg>
+  );
+}
+
 const map = {
   github: GitHubIcon,
   twitter: TwitterIcon,
   mail: MailIcon,
   linkedin: LinkedInIcon,
   bilibili: BilibiliIcon,
+  wechat: WeChatIcon,
   link: LinkIcon,
 } as const;
 

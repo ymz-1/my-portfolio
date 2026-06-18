@@ -3,12 +3,19 @@ import type { Dictionary } from "./en";
 export const zh: Dictionary = {
   nav: {
     home: "首页",
+    social: "频道",
     about: "关于",
     stack: "技术栈",
-    projects: "项目",
-    experience: "经历",
-    stats: "数据",
+    projects: "工具",
     contact: "联系",
+  },
+  navIcon: {
+    home: "🏠",
+    projects: "🔧",
+    about: "👤",
+    stack: "⚙️",
+    social: "📡",
+    contact: "✉️",
   },
   hero: {
     greeting: "嘿，我是",
@@ -35,20 +42,10 @@ export const zh: Dictionary = {
     subtitle: "我用这些东西造各种玩意儿",
   },
   projects: {
-    title: "我做过的东西",
-    subtitle: "副业项目、各种实验与 Game Jam 作品",
-    visit: "试玩",
+    title: "小工具",
+    subtitle: "",
+    visit: "使用",
     code: "源码",
-  },
-  experience: {
-    title: "一路走来",
-    subtitle: "我到目前为止的轨迹",
-  },
-  stats: {
-    title: "随手记的数字",
-    subtitle: "我的时间都悄悄花哪了，以及我喜欢什么",
-    timeTitle: "时间都去哪了",
-    interestsTitle: "我喜欢的东西",
   },
   contact: {
     title: "一起做点东西吧",

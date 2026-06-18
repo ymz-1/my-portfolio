@@ -50,8 +50,8 @@ export function About() {
         </Reveal>
 
         <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          {socials.map((s) => (
-            <StaggerItem key={s.platform}>
+          {socials.map((s, i) => (
+            <StaggerItem key={i}>
               <GlowCard
                 as="a"
                 tilt
@@ -62,7 +62,7 @@ export function About() {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold">{s.platform}</p>
+                    <p className="font-semibold">{pick(s.platform)}</p>
                     <p className="text-xs text-muted">{s.handle}</p>
                   </div>
                   <div className="text-right">

@@ -19,7 +19,7 @@ export function SocialCards() {
     >
       <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {socialCards.map((card, i) => (
-          <StaggerItem key={`${card.platform}-${i}`}>
+          <StaggerItem key={i}>
             <GlowCard
               as="a"
               tilt
@@ -36,7 +36,9 @@ export function SocialCards() {
                   <p className="truncate font-semibold leading-tight">
                     {pick(card.handle)}
                   </p>
-                  <p className="font-mono text-xs text-muted">{card.platform}</p>
+                  <p className="font-mono text-xs text-muted">
+                    {pick(card.platform)}
+                  </p>
                 </div>
                 <ArrowUpRightIcon className="ml-auto h-4 w-4 shrink-0 text-muted transition-colors group-hover:text-brand" />
               </div>

@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:ai-tool && next build",
+    "build:ai-tool": "npm run build-only --prefix ../python-backend/ai-passage-creator",
+    "build:site": "next build",
     "start": "next start",
     "lint": "eslint"
   },
