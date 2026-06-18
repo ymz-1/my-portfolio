@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python-backend (bundled monorepo)
+python-backend/.venv/
+python-backend/.idea/
+python-backend/**/node_modules/
+python-backend/**/__pycache__/
