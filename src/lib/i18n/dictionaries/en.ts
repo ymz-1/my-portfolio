@@ -49,6 +49,19 @@ export const en = {
     visit: "Use",
     code: "Source",
   },
+  projectDetail: {
+    back: "All projects",
+    intro: "Overview",
+    techStack: "Tech stack",
+    architecture: "Architecture",
+    frontend: "Frontend",
+    backend: "Backend",
+    gallery: "Screenshots",
+    highlights: "Performance & challenges",
+    liveDemo: "Live demo",
+    viewSource: "View source",
+    placeholder: "Details coming soon.",
+  },
   contact: {
     title: "Let's Build Something",
     subtitle:

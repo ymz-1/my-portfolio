@@ -20,23 +20,27 @@ const insightApiRewrites = [
   },
 ]);
 
+const devRewrites = async () => [
+  ...insightApiRewrites,
+  {
+    source: "/socket.io/:path*",
+    destination: `${insightBackendUrl}/socket.io/:path*`,
+  },
+  {
+    source: "/api/:path*",
+    destination: `${pythonBackendUrl}/api/:path*`,
+  },
+];
+
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    return [
-      ...insightApiRewrites,
-      {
-        source: "/socket.io/:path*",
-        destination: `${insightBackendUrl}/socket.io/:path*`,
-      },
-      {
-        source: "/api/:path*",
-        destination: `${pythonBackendUrl}/api/:path*`,
-      },
-    ];
-  },
+  ...(process.env.NODE_ENV === "development"
+    ? { rewrites: devRewrites }
+    : {}),
 };
 
 export default nextConfig;

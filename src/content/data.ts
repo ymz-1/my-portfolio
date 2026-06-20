@@ -36,20 +36,8 @@ export type SkillGroup = {
   skills: Skill[];
 };
 
-export type Project = {
-  title: string;
-  description: Localized;
-  tags: string[];
-  /** 站内工具路径，如 /tools/ai-article */
-  siteUrl?: string;
-  liveUrl?: string;
-  codeUrl?: string;
-  /** Tailwind gradient classes used for the cover placeholder */
-  accent: string;
-  /** 封面图片（可选，优先于渐变占位） */
-  coverSrc?: string;
-  featured?: boolean;
-};
+export type { ProjectCard as Project } from "@/content/projects";
+export { projects } from "@/content/projects";
 
 export type GadgetItem = {
   title: Localized;
@@ -100,9 +88,9 @@ export type CtaLink = {
 };
 
 export const profile = {
-  name: "Your Name",
-  nameLocalized: { zh: "你的名字", en: "Your Name" } as Localized,
-  avatarInitials: "YN",
+  name: "麦吉",
+  nameLocalized: { zh: "麦吉", en: "Maggie" } as Localized,
+  avatarInitials: "MJ",
   avatarSrc: "/avatar.png",
   location: { zh: "中国 · 某城市", en: "Somewhere, China" } as Localized,
   email: "ymaizi2023@163.com",
@@ -110,6 +98,11 @@ export const profile = {
   headline: {
     zh: "C++ / 工具开发者 ｜ AI 工具 & 独立开发探索中",
     en: "C++ / Tooling Developer · Exploring AI tools & indie dev",
+  } as Localized,
+  /** Hero 问候语（显示在座右铭上方） */
+  heroGreeting: {
+    zh: "嗨，我是麦吉",
+    en: "Hey, I'm Maggie",
   } as Localized,
   /** 一句话理念 / 座右铭 */
   quote: {
@@ -302,53 +295,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "React", level: 52 },
       { name: "Three.js / R3F", level: 40 },
     ],
-  },
-];
-
-export const projects: Project[] = [
-  {
-    title: "AI 爆款文章生成",
-    description: {
-      zh: "基于多智能体编排的 AI 文章创作平台，从选题、大纲到成稿一站式完成，支持实时进度与图文混排。",
-      en: "Multi-agent AI writing platform — topic to outline to finished draft in one flow, with live progress and rich media.",
-    },
-    tags: ["Python", "FastAPI", "Vue", "AI"],
-    siteUrl: "/tools/ai-article",
-    coverSrc: "/projects/ai-article.png",
-    codeUrl: "https://github.com",
-    accent: "from-emerald-500/25 to-lime-400/10",
-    featured: true,
-  },
-  {
-    title: "Insight Radar",
-    description: {
-      zh: "AI 热点监控工具 — 多源聚合抓取、AI 相关性分析，WebSocket 实时推送热点通知。",
-      en: "AI hotspot monitor — multi-source aggregation, AI relevance analysis, and real-time WebSocket alerts.",
-    },
-    tags: ["Express", "React", "Socket.io", "AI"],
-    siteUrl: "/tools/insight-radar",
-    accent: "from-orange-500/25 to-amber-400/10",
-  },
-  {
-    title: "AI Dev Companion",
-    description: {
-      zh: "一个实验性的 AI 辅助开发小助手，把常用的代码生成、注释与重构提示串成本地工作流。",
-      en: "An experimental AI-assisted dev companion that wires common code generation, commenting and refactor prompts into a local workflow.",
-    },
-    tags: ["Python", "AI", "CLI"],
-    codeUrl: "https://github.com",
-    accent: "from-purple-500/30 to-zinc-500/15",
-  },
-  {
-    title: "This Portfolio",
-    description: {
-      zh: "你正在看的这个个人站，用 Next.js + Tailwind + Three.js 搭建，顺便练手现代前端与 3D。",
-      en: "The personal site you're looking at — built with Next.js + Tailwind + Three.js as a hands-on dive into modern frontend and 3D.",
-    },
-    tags: ["Next.js", "Tailwind", "Three.js"],
-    liveUrl: "https://example.com",
-    codeUrl: "https://github.com",
-    accent: "from-violet-400/30 to-slate-500/15",
   },
 ];
 
@@ -578,7 +524,7 @@ export const counters: { label: Localized; value: number; suffix?: string }[] = 
 
 export const contactCard: ContactCardContent = {
   title: { zh: "认识一下", en: "Get to know me" },
-  greeting: { zh: "你好，我是 Ye Maizi。", en: "Hi, I'm Ye Maizi." },
+  greeting: { zh: "你好，我是 Ye Maizi。", en: "Hi, I'm Maggie." },
   intro: {
     zh: "我做一些解决日常问题的小工具。",
     en: "I build small tools to solve everyday problems.",

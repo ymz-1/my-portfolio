@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { navSections, profile } from "@/content/data";
@@ -9,9 +10,17 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const { t, pick } = useLanguage();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("home");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  function navHref(id: (typeof navSections)[number]) {
+    if (id === "home") return isHome ? "#home" : "/#home";
+    if (id === "projects" && !isHome) return "/projects";
+    return isHome ? `#${id}` : `/#${id}`;
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -47,7 +56,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
         <a
-          href="#home"
+          href={isHome ? "#home" : "/#home"}
           className="font-semibold tracking-tight"
         >
           <span>{pick(profile.nameLocalized)}</span>
@@ -57,7 +66,7 @@ export function Navbar() {
           {navSections.map((id) => (
             <li key={id}>
               <a
-                href={`#${id}`}
+                href={navHref(id)}
                 className={cn(
                   "relative rounded-full px-3 py-1.5 text-sm transition-colors",
                   active === id
@@ -127,7 +136,7 @@ export function Navbar() {
               {navSections.map((id) => (
                 <li key={id}>
                   <a
-                    href={`#${id}`}
+                    href={navHref(id)}
                     onClick={() => setMenuOpen(false)}
                     className={cn(
                       "block rounded-lg px-3 py-2.5 text-sm transition-colors",

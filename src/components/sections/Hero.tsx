@@ -121,8 +121,12 @@ export function Hero() {
             {pick(profile.headline)}
           </p>
 
+          <p className="mt-5 text-pretty text-sm text-muted">
+            {pick(profile.heroGreeting)}
+          </p>
+
           {/* Quote */}
-          <p className="mx-auto mt-5 max-w-sm text-pretty text-sm italic leading-relaxed text-muted">
+          <p className="mx-auto mt-3 max-w-sm text-pretty text-sm italic leading-relaxed text-muted">
             “{pick(profile.quote)}”
           </p>
 
