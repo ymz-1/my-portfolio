@@ -40,12 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# python-backend (bundled monorepo)
-python-backend/.venv/
-python-backend/.idea/
-python-backend/**/node_modules/
-python-backend/**/__pycache__/
-
-# insight-radar (bundled monorepo)
-insight-radar/**/node_modules/
-insight-radar/server/.env
+# Bundled tool sources (local only; built assets live in public/tools/)
+/python-backend/
+/insight-radar/
