@@ -12,6 +12,8 @@ type SectionWrapperProps = {
   children: ReactNode;
   className?: string;
   containerClassName?: string;
+  headerClassName?: string;
+  titleClassName?: string;
 };
 
 export function SectionWrapper({
@@ -24,6 +26,8 @@ export function SectionWrapper({
   children,
   className,
   containerClassName,
+  headerClassName,
+  titleClassName,
 }: SectionWrapperProps) {
   const showHeader = title || subtitle || eyebrow;
 
@@ -34,7 +38,7 @@ export function SectionWrapper({
     >
       <div className={cn("mx-auto w-full max-w-6xl px-6", containerClassName)}>
         {showHeader && (
-          <Reveal className="mb-14 max-w-2xl">
+          <Reveal className={cn("mb-14 max-w-2xl", headerClassName)}>
             {eyebrow && (
               <span className="mb-4 inline-flex items-center gap-2 font-pixel text-[10px] leading-none text-brand">
                 {eyebrowIcon}
@@ -42,7 +46,12 @@ export function SectionWrapper({
               </span>
             )}
             {title && (
-              <h2 className="flex items-center gap-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+              <h2
+                className={cn(
+                  "flex items-center gap-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl",
+                  titleClassName,
+                )}
+              >
                 {titleIcon}
                 <span>{title}</span>
               </h2>

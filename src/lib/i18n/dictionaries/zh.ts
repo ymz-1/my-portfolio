@@ -6,7 +6,7 @@ export const zh: Dictionary = {
     social: "小工具",
     articles: "文章",
     stack: "技术栈",
-    projects: "工具",
+    projects: "项目",
     contact: "联系",
   },
   navIcon: {
@@ -34,7 +34,7 @@ export const zh: Dictionary = {
     subtitle: "我在互联网上的各个频道",
   },
   articles: {
-    title: "大家读得最多的文章",
+    title: "文章",
     note: "感谢每一位读者",
     readLabel: "阅读",
   },
@@ -43,11 +43,10 @@ export const zh: Dictionary = {
     note: "自己做的，免费用",
   },
   stack: {
-    title: "我的工具箱",
-    subtitle: "我用这些东西造各种玩意儿",
+    title: "技能栈",
   },
   projects: {
-    title: "小工具",
+    title: "项目",
     subtitle: "",
     visit: "使用",
     code: "源码",

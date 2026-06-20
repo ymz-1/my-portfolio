@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { ArrowUpRightIcon, GitHubIcon, WrenchIcon } from "@/components/ui/icons";
@@ -25,27 +24,27 @@ function ProjectCard({
   const cover = (
     <div
       className={cn(
-        "relative mb-5 aspect-[16/9] w-full overflow-hidden rounded-xl bg-gradient-to-br",
+        "relative mb-3 aspect-[2/1] w-full overflow-hidden rounded-lg bg-gradient-to-br sm:aspect-[5/2]",
         project.accent,
       )}
     >
       <div className="absolute inset-0 bg-dots opacity-40" />
       <div className="absolute inset-0 scanlines opacity-30" />
-      <span className="absolute left-3 top-3 z-10 bg-background/60 px-2 py-1 font-pixel text-[8px] leading-none text-white/80 pixel-border">
+      <span className="absolute left-2 top-2 z-10 bg-background/60 px-1.5 py-0.5 font-pixel text-[7px] leading-none text-white/80 pixel-border">
         {project.featured ? "featured" : "tool"}
       </span>
       {project.coverSrc ? (
-        <div className="absolute inset-0 flex items-center justify-center p-6">
+        <div className="absolute inset-0 flex items-center justify-center p-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={project.coverSrc}
             alt={project.title}
-            className="max-h-full w-auto object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-105"
+            className="max-h-full w-auto object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       ) : (
         <div className="absolute inset-0 grid place-items-center">
-          <span className="font-pixel text-2xl text-white/20">
+          <span className="font-pixel text-lg text-white/20 sm:text-xl">
             {project.title
               .split(" ")
               .map((w) => w[0])
@@ -58,23 +57,23 @@ function ProjectCard({
 
   const body = (
     <>
-      <h3 className="line-clamp-1 text-lg font-semibold">{project.title}</h3>
-      <p className="mt-2 line-clamp-3 flex-1 text-sm text-muted">
+      <h3 className="line-clamp-1 text-base font-semibold">{project.title}</h3>
+      <p className="mt-1 line-clamp-2 flex-1 text-xs leading-relaxed text-muted">
         {pick(project.description)}
       </p>
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-2 flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-md bg-white/5 px-2 py-1 font-mono text-[11px] text-muted"
+            className="rounded-md bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-muted"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="mt-5 flex items-center gap-4 text-sm">
+      <div className="mt-3 flex items-center gap-3 text-xs">
         {project.siteUrl && (
           <span className="inline-flex items-center gap-1.5 font-medium text-foreground transition-colors group-hover:text-brand">
             {visitLabel}
@@ -122,7 +121,7 @@ function ProjectCard({
         }}
         className="group flex h-full flex-col cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
       >
-        <GlowCard tilt className="flex h-full flex-col transition-colors group-hover:border-brand/30">
+        <GlowCard tilt className="flex h-full flex-col !p-4 transition-colors group-hover:border-brand/30">
           {cover}
           {body}
         </GlowCard>
@@ -131,7 +130,7 @@ function ProjectCard({
   }
 
   return (
-    <GlowCard tilt className="flex h-full flex-col">
+    <GlowCard tilt className="flex h-full flex-col !p-4">
       {cover}
       {body}
     </GlowCard>
@@ -142,29 +141,31 @@ export function Projects() {
   const { t, pick } = useLanguage();
 
   return (
-    <SectionWrapper
+    <section
       id="projects"
-      eyebrow="builds"
-      eyebrowIcon={
-        <WrenchIcon className="h-3.5 w-3.5 shrink-0 text-brand" />
-      }
-      title={t.projects.title}
-      titleIcon={
-        <WrenchIcon className="h-8 w-8 shrink-0 text-brand sm:h-9 sm:w-9" />
-      }
+      className="relative flex min-h-[calc(100svh-4rem)] scroll-mt-20 flex-col justify-center py-10 sm:py-12"
     >
-      <Stagger className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <StaggerItem key={project.title} className="h-full">
-            <ProjectCard
-              project={project}
-              visitLabel={t.projects.visit}
-              codeLabel={t.projects.code}
-              pick={pick}
-            />
-          </StaggerItem>
-        ))}
-      </Stagger>
-    </SectionWrapper>
+      <div className="mx-auto w-full max-w-6xl px-6">
+        <div className="mb-5 border-b border-white/10 pb-6 sm:mb-6">
+          <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            <WrenchIcon className="h-7 w-7 shrink-0 text-brand" />
+            {t.projects.title}
+          </h2>
+        </div>
+
+        <Stagger className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <StaggerItem key={project.title} className="h-full">
+              <ProjectCard
+                project={project}
+                visitLabel={t.projects.visit}
+                codeLabel={t.projects.code}
+                pick={pick}
+              />
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
   );
 }

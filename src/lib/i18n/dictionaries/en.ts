@@ -4,7 +4,7 @@ export const en = {
     social: "Gadgets",
     articles: "Articles",
     stack: "Stack",
-    projects: "Tools",
+    projects: "Projects",
     contact: "Contact",
   },
   navIcon: {
@@ -32,7 +32,7 @@ export const en = {
     subtitle: "My channels across the internet",
   },
   articles: {
-    title: "Most Read Articles",
+    title: "Articles",
     note: "Thanks to every reader",
     readLabel: "Reads",
   },
@@ -41,11 +41,10 @@ export const en = {
     note: "Made by me, free to use",
   },
   stack: {
-    title: "My Toolbox",
-    subtitle: "The stuff I build things with",
+    title: "Skills",
   },
   projects: {
-    title: "Tools",
+    title: "Projects",
     subtitle: "",
     visit: "Use",
     code: "Source",
