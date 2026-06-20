@@ -1,8 +1,8 @@
 export const en = {
   nav: {
     home: "Home",
-    social: "Channels",
-    about: "About",
+    social: "Gadgets",
+    articles: "Articles",
     stack: "Stack",
     projects: "Tools",
     contact: "Contact",
@@ -10,9 +10,9 @@ export const en = {
   navIcon: {
     home: "🏠",
     projects: "🔧",
-    about: "👤",
+    articles: "📄",
     stack: "⚙️",
-    social: "📡",
+    social: "🧰",
     contact: "✉️",
   },
   hero: {
@@ -31,9 +31,14 @@ export const en = {
     title: "Where I Hang Out",
     subtitle: "My channels across the internet",
   },
-  about: {
-    title: "Who am I",
-    subtitle: "The person behind the projects",
+  articles: {
+    title: "Most Read Articles",
+    note: "Thanks to every reader",
+    readLabel: "Reads",
+  },
+  gadgets: {
+    title: "Fun Little Gadgets",
+    note: "Made by me, free to use",
   },
   stack: {
     title: "My Toolbox",

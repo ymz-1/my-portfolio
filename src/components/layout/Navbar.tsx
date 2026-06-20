@@ -48,12 +48,9 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
         <a
           href="#home"
-          className="flex items-center gap-2 font-semibold tracking-tight"
+          className="font-semibold tracking-tight"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-brand to-brand-2 font-pixel text-[10px] text-background">
-            {profile.avatarInitials}
-          </span>
-          <span className="hidden sm:inline">{pick(profile.nameLocalized)}</span>
+          <span>{pick(profile.nameLocalized)}</span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">

@@ -45,3 +45,7 @@ python-backend/.venv/
 python-backend/.idea/
 python-backend/**/node_modules/
 python-backend/**/__pycache__/
+
+# insight-radar (bundled monorepo)
+insight-radar/**/node_modules/
+insight-radar/server/.env

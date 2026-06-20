@@ -3,8 +3,8 @@ import type { Dictionary } from "./en";
 export const zh: Dictionary = {
   nav: {
     home: "首页",
-    social: "频道",
-    about: "关于",
+    social: "小工具",
+    articles: "文章",
     stack: "技术栈",
     projects: "工具",
     contact: "联系",
@@ -12,9 +12,9 @@ export const zh: Dictionary = {
   navIcon: {
     home: "🏠",
     projects: "🔧",
-    about: "👤",
+    articles: "📄",
     stack: "⚙️",
-    social: "📡",
+    social: "🧰",
     contact: "✉️",
   },
   hero: {
@@ -33,9 +33,14 @@ export const zh: Dictionary = {
     title: "我活跃的地方",
     subtitle: "我在互联网上的各个频道",
   },
-  about: {
-    title: "我是谁",
-    subtitle: "项目背后的那个人",
+  articles: {
+    title: "大家读得最多的文章",
+    note: "感谢每一位读者",
+    readLabel: "阅读",
+  },
+  gadgets: {
+    title: "好玩的小工具",
+    note: "自己做的，免费用",
   },
   stack: {
     title: "我的工具箱",

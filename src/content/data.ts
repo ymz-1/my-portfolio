@@ -51,6 +51,25 @@ export type Project = {
   featured?: boolean;
 };
 
+export type GadgetItem = {
+  title: Localized;
+  description: Localized;
+  badge: Localized;
+  tags: Localized[];
+  siteUrl?: string;
+  liveUrl?: string;
+};
+
+export type ArticleItem = {
+  rank: number;
+  title: Localized;
+  readCount: string;
+  metricLabel: Localized;
+  metricValue: string;
+  url?: string;
+  highlight?: boolean;
+};
+
 export type ContactLink = {
   label: string;
   url: string;
@@ -301,14 +320,14 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: "UGC Script Helper",
+    title: "Insight Radar",
     description: {
-      zh: "面向游戏 UGC 创作者的脚本辅助工具，提供语法提示、模板与一键打包，降低上手门槛。",
-      en: "A scripting helper for game UGC creators with syntax hints, templates and one-click packaging to lower the entry barrier.",
+      zh: "AI 热点监控工具 — 多源聚合抓取、AI 相关性分析，WebSocket 实时推送热点通知。",
+      en: "AI hotspot monitor — multi-source aggregation, AI relevance analysis, and real-time WebSocket alerts.",
     },
-    tags: ["C++", "Lua", "UGC", "Editor"],
-    codeUrl: "https://github.com",
-    accent: "from-indigo-500/30 to-violet-500/15",
+    tags: ["Express", "React", "Socket.io", "AI"],
+    siteUrl: "/tools/insight-radar",
+    accent: "from-orange-500/25 to-amber-400/10",
   },
   {
     title: "AI Dev Companion",
@@ -330,6 +349,223 @@ export const projects: Project[] = [
     liveUrl: "https://example.com",
     codeUrl: "https://github.com",
     accent: "from-violet-400/30 to-slate-500/15",
+  },
+];
+
+export const articles: ArticleItem[] = [
+  {
+    rank: 1,
+    highlight: true,
+    title: {
+      zh: "2026 年 AI 编程入门指南：从零到独立开发",
+      en: "AI Coding in 2026: From Zero to Indie Dev",
+    },
+    readCount: "10W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "2.3K",
+  },
+  {
+    rank: 2,
+    highlight: true,
+    title: {
+      zh: "C++ 桌面工具开发：MFC 还没过时吗？",
+      en: "C++ Desktop Tools: Is MFC Still Relevant?",
+    },
+    readCount: "8.5W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "1.8K",
+  },
+  {
+    rank: 3,
+    highlight: true,
+    title: {
+      zh: "我用 AI 做了一个爆款文章生成器",
+      en: "How I Built an AI Viral Article Generator",
+    },
+    readCount: "6.2W+",
+    metricLabel: { zh: "互动率", en: "Engagement" },
+    metricValue: "12%",
+  },
+  {
+    rank: 4,
+    title: {
+      zh: "游戏 UGC 节点式系统开发实战",
+      en: "Building Node-Based UGC Systems in Games",
+    },
+    readCount: "4.1W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "980",
+  },
+  {
+    rank: 5,
+    title: {
+      zh: "独立开发者的时间管理：少写代码多交付",
+      en: "Time Management for Indie Devs: Ship More, Code Less",
+    },
+    readCount: "3.8W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "860",
+  },
+  {
+    rank: 6,
+    title: {
+      zh: "Next.js + Three.js 搭建个人作品集",
+      en: "Building a Portfolio with Next.js + Three.js",
+    },
+    readCount: "3.2W+",
+    metricLabel: { zh: "互动率", en: "Engagement" },
+    metricValue: "9%",
+  },
+  {
+    rank: 7,
+    title: {
+      zh: "Python 自动化脚本：把重复工作交给机器",
+      en: "Python Automation: Let Scripts Handle the Grind",
+    },
+    readCount: "2.9W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "720",
+  },
+  {
+    rank: 8,
+    title: {
+      zh: "热点监控工具的技术架构拆解",
+      en: "Inside a Hotspot Monitoring Tool",
+    },
+    readCount: "2.5W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "640",
+  },
+  {
+    rank: 9,
+    title: {
+      zh: "从 0 到 1 做小工具：我的独立开发心得",
+      en: "Zero to One: Lessons from Building Small Tools",
+    },
+    readCount: "2.1W+",
+    metricLabel: { zh: "互动率", en: "Engagement" },
+    metricValue: "7%",
+  },
+  {
+    rank: 10,
+    title: {
+      zh: "2026 年值得关注的 5 个 AI 工具方向",
+      en: "5 AI Tool Trends Worth Watching in 2026",
+    },
+    readCount: "1.8W+",
+    metricLabel: { zh: "转发", en: "Shares" },
+    metricValue: "520",
+  },
+];
+
+export const gadgetItems: GadgetItem[] = [
+  {
+    title: { zh: "LLM 预算计算器", en: "LLM Budget Calculator" },
+    description: {
+      zh: "快速估算大模型 API 调用成本，支持多种模型定价对比与月度预算规划。",
+      en: "Estimate LLM API costs quickly with model pricing comparison and monthly budget planning.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "Token 分析", en: "Token analysis" },
+      { zh: "成本管理", en: "Cost control" },
+    ],
+  },
+  {
+    title: { zh: "Ollama 管理器", en: "Ollama Manager" },
+    description: {
+      zh: "本地大模型管理工具，支持系统资源监控、智能模型推荐、局域网配置等功能。",
+      en: "Local LLM manager with resource monitoring, model recommendations, and LAN setup.",
+    },
+    badge: { zh: "免费下载", en: "Free download" },
+    tags: [
+      { zh: "本地部署", en: "Local deploy" },
+      { zh: "模型管理", en: "Model mgmt" },
+    ],
+  },
+  {
+    title: { zh: "AI 知识库助手", en: "AI Knowledge Base" },
+    description: {
+      zh: "基于 RAG 的个人知识库问答工具，支持文档导入与智能检索。",
+      en: "RAG-powered personal knowledge base with document import and smart search.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "RAG", en: "RAG" },
+      { zh: "知识管理", en: "Knowledge" },
+    ],
+  },
+  {
+    title: { zh: "代码片段管理器", en: "Snippet Manager" },
+    description: {
+      zh: "开发者常用代码片段收集与快速检索，支持多语言标签分类。",
+      en: "Collect and search dev snippets with multi-language tag organization.",
+    },
+    badge: { zh: "免费下载", en: "Free download" },
+    tags: [
+      { zh: "效率工具", en: "Productivity" },
+      { zh: "代码管理", en: "Snippets" },
+    ],
+  },
+  {
+    title: { zh: "Markdown 转公众号", en: "Markdown to WeChat" },
+    description: {
+      zh: "一键将 Markdown 文章转换为微信公众号排版格式，支持代码高亮。",
+      en: "Convert Markdown to WeChat-ready formatting with syntax highlighting.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "写作工具", en: "Writing" },
+      { zh: "排版转换", en: "Formatting" },
+    ],
+  },
+  {
+    title: { zh: "Git 提交规范检查", en: "Git Commit Linter" },
+    description: {
+      zh: "自动检查 Git 提交信息是否符合 Conventional Commits 规范。",
+      en: "Lint commit messages against Conventional Commits conventions.",
+    },
+    badge: { zh: "参考工具", en: "Reference" },
+    tags: [
+      { zh: "Git", en: "Git" },
+      { zh: "规范检查", en: "Linting" },
+    ],
+  },
+  {
+    title: { zh: "批量文件重命名", en: "Batch File Renamer" },
+    description: {
+      zh: "Windows 桌面小工具，支持正则表达式、序号前缀等多种批量改名模式。",
+      en: "Windows desktop utility for batch rename with regex and numbering patterns.",
+    },
+    badge: { zh: "免费下载", en: "Free download" },
+    tags: [
+      { zh: "Windows", en: "Windows" },
+      { zh: "文件工具", en: "File tools" },
+    ],
+  },
+  {
+    title: { zh: "API 调试面板", en: "API Debug Panel" },
+    description: {
+      zh: "轻量级 REST API 测试工具，支持环境变量管理与请求历史记录。",
+      en: "Lightweight REST API tester with env vars and request history.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "API 测试", en: "API testing" },
+      { zh: "开发调试", en: "Debugging" },
+    ],
+  },
+  {
+    title: { zh: "Devlog 写作助手", en: "Devlog Writing Helper" },
+    description: {
+      zh: "帮助独立开发者记录开发过程，自动生成周报和项目更新摘要。",
+      en: "Help indie devs log progress and auto-generate weekly updates.",
+    },
+    badge: { zh: "立即报名", en: "Join waitlist" },
+    tags: [
+      { zh: "写作", en: "Writing" },
+      { zh: "独立开发", en: "Indie dev" },
+    ],
   },
 ];
 
@@ -379,8 +615,8 @@ export const contactLinks: ContactLink[] = [
 export const navSections = [
   "home",
   "projects",
-  "about",
-  "stack",
+  "articles",
   "social",
+  "stack",
   "contact",
 ] as const;

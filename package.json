@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:ai-tool && next build",
+    "build": "npm run build:ai-tool && npm run build:insight-radar && next build",
     "build:ai-tool": "npm run build-only --prefix ./python-backend/ai-passage-creator",
+    "build:insight-radar": "npm run build --prefix ./insight-radar/client",
     "build:site": "next build",
     "start": "next start",
     "lint": "eslint"
