@@ -4,6 +4,7 @@ import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Icosahedron } from "@react-three/drei";
 import type { Group, Mesh } from "three";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 function LowPolyCore() {
   const meshRef = useRef<Mesh>(null);
@@ -47,9 +48,8 @@ function LowPolyCore() {
   );
 }
 
-function FloatingCubes() {
+function FloatingCubes({ count }: { count: number }) {
   const groupRef = useRef<Group>(null);
-  const count = 14;
   const palette = ["#a78bfa", "#c4b5fd", "#7c7a90"];
   const cubes = Array.from({ length: count }, (_, i) => {
     const angle = (i / count) * Math.PI * 2;
@@ -91,12 +91,15 @@ function FloatingCubes() {
 }
 
 export default function HeroScene() {
+  const isMobile = useMediaQuery("(max-width: 767px)");
+
   return (
     <Canvas
+      className="h-full w-full"
       camera={{ position: [0, 0, 5], fov: 45 }}
-      dpr={[1, 1.8]}
-      gl={{ antialias: true, alpha: true }}
-      style={{ background: "transparent" }}
+      dpr={isMobile ? [1, 1.25] : [1, 1.8]}
+      gl={{ antialias: !isMobile, alpha: true, powerPreference: isMobile ? "low-power" : "high-performance" }}
+      style={{ background: "transparent", pointerEvents: "none" }}
     >
       <ambientLight intensity={0.65} />
       <directionalLight position={[3, 3, 3]} intensity={1.3} color="#a78bfa" />
@@ -104,7 +107,7 @@ export default function HeroScene() {
       <pointLight position={[4, 2, 2]} intensity={1.4} color="#c4b5fd" />
       <Suspense fallback={null}>
         <LowPolyCore />
-        <FloatingCubes />
+        <FloatingCubes count={isMobile ? 6 : 14} />
       </Suspense>
     </Canvas>
   );

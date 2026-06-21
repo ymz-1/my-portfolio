@@ -36,28 +36,28 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16"
+      className="relative grid min-h-screen grid-cols-1 grid-rows-1 overflow-hidden pt-16"
     >
-      {/* Background motifs */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      {/* Background layer (same grid cell, behind content) */}
+      <div
+        aria-hidden
+        className="pointer-events-none col-start-1 row-start-1 min-h-[calc(100svh-4rem)] self-stretch"
+      >
         <div className="absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <div className="absolute inset-0 scanlines opacity-40" />
         <div className="absolute -left-32 top-10 h-96 w-96 rounded-full bg-brand/20 blur-[120px]" />
         <div className="absolute -right-20 bottom-0 h-[28rem] w-[28rem] rounded-full bg-brand-2/20 blur-[140px]" />
         <div className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
+
+        {/* 3D scene — client-only decorative background */}
+        <div className="absolute inset-0 opacity-35 sm:opacity-50 md:opacity-60">
+          <ErrorBoundary>
+            <HeroScene />
+          </ErrorBoundary>
+        </div>
       </div>
 
-      {/* 3D scene — client-only, decorative background (desktop) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 hidden opacity-60 md:block"
-      >
-        <ErrorBoundary>
-          <HeroScene />
-        </ErrorBoundary>
-      </div>
-
-      <div className="relative mx-auto flex w-full max-w-xl flex-col items-center px-6">
+      <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-xl flex-col items-center justify-center px-6 py-10">
         {/* Orbit rings + floating items (desktop) */}
         <div
           aria-hidden
@@ -179,16 +179,30 @@ export function Hero() {
             </span>
             <span className="truncate">{pick(profile.now)}</span>
           </div>
+
+          {/* Mobile scroll hint — in flow so it stays visible below the card */}
+          <motion.a
+            href="#projects"
+            aria-label={t.hero.scroll}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="flex flex-col items-center gap-2 pt-2 text-xs text-muted sm:hidden"
+          >
+            {t.hero.scroll}
+            <ArrowDownIcon className="h-4 w-4 animate-bounce" />
+          </motion.a>
         </motion.div>
       </div>
 
+      {/* Desktop scroll hint */}
       <motion.a
         href="#projects"
         aria-label={t.hero.scroll}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted sm:flex"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted sm:flex"
       >
         {t.hero.scroll}
         <ArrowDownIcon className="h-4 w-4 animate-bounce" />
