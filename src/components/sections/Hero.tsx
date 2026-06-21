@@ -112,8 +112,8 @@ export function Hero() {
             />
           </div>
 
-          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-            <span className="text-gradient">{pick(profile.nameLocalized)}</span>
+          <h1 className="text-balance text-3xl font-bold tracking-[0.18em] sm:text-4xl">
+            <span className="text-gradient">{profile.heroTitle}</span>
           </h1>
 
           {/* Identity / headline */}

@@ -37,6 +37,9 @@ export const zh: Dictionary = {
     title: "文章",
     note: "感谢每一位读者",
     readLabel: "阅读",
+    stories: "Stories",
+    notes: "Notes",
+    backHome: "返回首页",
   },
   gadgets: {
     title: "好玩的小工具",

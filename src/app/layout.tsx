@@ -25,16 +25,16 @@ const pressStart = Press_Start_2P({
   weight: ["400"],
 });
 
-const siteName = "麦吉 · C++ / 工具开发者";
-const siteTitle = "麦吉 — C++ / 工具开发者";
+const siteName = "小叶 · AI 工具开发";
+const siteTitle = "小叶 — AI 工具开发";
 const siteDescription =
-  "C++ / 工具开发者的个人站。专注 MFC / Win32 桌面工具与游戏 UGC 开发，正在探索 AI 工具与独立开发，并记录折腾过程。";
+  "小叶的个人站。曾从事 C++ 开发，现专注 AI 应用与工具实践，记录独立开发与小工具探索过程。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
   title: {
     default: siteTitle,
-    template: "%s · 麦吉",
+    template: "%s · 小叶",
   },
   description: siteDescription,
   keywords: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "Next.js",
     "blog",
   ],
-  authors: [{ name: "麦吉" }],
+  authors: [{ name: "小叶" }],
   openGraph: {
     type: "website",
     title: siteTitle,

@@ -19,6 +19,7 @@ export function Navbar() {
   function navHref(id: (typeof navSections)[number]) {
     if (id === "home") return isHome ? "#home" : "/#home";
     if (id === "projects" && !isHome) return "/projects";
+    if (id === "articles" && pathname.startsWith("/articles")) return "/#articles";
     return isHome ? `#${id}` : `/#${id}`;
   }
 

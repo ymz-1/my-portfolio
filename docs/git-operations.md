@@ -28,7 +28,7 @@
 ### Commit 1：`62793f1`
 
 ```
-Restore static export with project detail pages and rebrand to 麦吉.
+Restore static export with project detail pages and rebrand to 小叶.
 
 Add /projects routes and case-study content, enable Cloudflare-friendly static build with dev-only API rewrites, and update Hero branding.
 ```
@@ -43,7 +43,7 @@ Add /projects routes and case-study content, enable Cloudflare-friendly static b
 | 删除 | `src/app/tools/*/route.ts`（与静态导出不兼容） |
 | 部署 | `public/_redirects`（Cloudflare 工具路径） |
 | 文档 | `docs/architecture.md`、`docs/cloudflare-deployment.md` |
-| 品牌 | 麦吉 / Maggie、`heroGreeting`、头像等 |
+| 品牌 | 小叶 / Xiaoye、`heroGreeting`、头像等 |
 | 导航 | 子页面 Navbar 链接适配 |
 
 **未纳入此次提交：**
@@ -87,7 +87,7 @@ Ignore python-backend and insight-radar locally; Cloudflare builds with build:si
 ### 3.1 分支关系（操作前的问题）
 
 ```
-本地 master  ──► 最新代码（麦吉、项目页…）
+本地 master  ──► 最新代码（小叶、项目页…）
 远程 master  ──► 曾落后于本地，后已同步
 远程 main    ──► Cloudflare 监听分支，曾停留在旧 commit（67268da）
 ```
@@ -104,7 +104,7 @@ git merge --abort
 ```
 
 - 取消进行中的 merge
-- 工作区恢复为 **`141ad2b`**（本地代码为准，含麦吉品牌与项目页）
+- 工作区恢复为 **`141ad2b`**（本地代码为准，含小叶品牌与项目页）
 - 清除所有 `<<<<<<<` 冲突标记
 
 ### 3.3 推送命令记录

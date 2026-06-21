@@ -35,6 +35,9 @@ export const en = {
     title: "Articles",
     note: "Thanks to every reader",
     readLabel: "Reads",
+    stories: "Stories",
+    notes: "Notes",
+    backHome: "Back to home",
   },
   gadgets: {
     title: "Fun Little Gadgets",

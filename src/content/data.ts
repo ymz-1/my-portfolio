@@ -48,16 +48,6 @@ export type GadgetItem = {
   liveUrl?: string;
 };
 
-export type ArticleItem = {
-  rank: number;
-  title: Localized;
-  readCount: string;
-  metricLabel: Localized;
-  metricValue: string;
-  url?: string;
-  highlight?: boolean;
-};
-
 export type ContactLink = {
   label: string;
   url: string;
@@ -88,31 +78,29 @@ export type CtaLink = {
 };
 
 export const profile = {
-  name: "麦吉",
-  nameLocalized: { zh: "麦吉", en: "Maggie" } as Localized,
-  avatarInitials: "MJ",
+  name: "小叶",
+  /** Hero 大标题（渐变字） */
+  heroTitle: "XIAOYE",
+  nameLocalized: { zh: "小叶", en: "Xiaoye" } as Localized,
+  avatarInitials: "XY",
   avatarSrc: "/avatar.png",
   location: { zh: "中国 · 某城市", en: "Somewhere, China" } as Localized,
   email: "ymaizi2023@163.com",
-  /** Hero 身份标签：C++ / 工具开发者 ｜ AI 工具 & 独立开发探索中 */
   headline: {
-    zh: "C++ / 工具开发者 ｜ AI 工具 & 独立开发探索中",
-    en: "C++ / Tooling Developer · Exploring AI tools & indie dev",
+    zh: "AI工具开发｜独立开发探索中",
+    en: "AI Tooling · Exploring indie development",
   } as Localized,
-  /** Hero 问候语（显示在座右铭上方） */
   heroGreeting: {
-    zh: "嗨，我是麦吉",
-    en: "Hey, I'm Maggie",
+    zh: "嗨，我是小叶",
+    en: "Hey, I'm Xiaoye",
   } as Localized,
-  /** 一句话理念 / 座右铭 */
   quote: {
-    zh: "做一些能解决实际问题的小工具，并记录过程。",
-    en: "Build small tools that solve real problems — and document the journey.",
+    zh: "做一些能解决实际问题的小工具，并记录探索过程。",
+    en: "Build small tools that solve real problems — and document the exploration.",
   } as Localized,
-  /** 经验摘要一行 */
   experienceSummary: {
-    zh: "2 年 C++ / MFC 开发 · 游戏 UGC 开发经验",
-    en: "2 yrs of C++ / MFC development · game UGC experience",
+    zh: "曾从事C++软件开发，现专注AI应用与工具实践。",
+    en: "Former C++ developer, now focused on AI apps and practical tooling.",
   } as Localized,
   about: [
     {
@@ -298,112 +286,6 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export const articles: ArticleItem[] = [
-  {
-    rank: 1,
-    highlight: true,
-    title: {
-      zh: "2026 年 AI 编程入门指南：从零到独立开发",
-      en: "AI Coding in 2026: From Zero to Indie Dev",
-    },
-    readCount: "10W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "2.3K",
-  },
-  {
-    rank: 2,
-    highlight: true,
-    title: {
-      zh: "C++ 桌面工具开发：MFC 还没过时吗？",
-      en: "C++ Desktop Tools: Is MFC Still Relevant?",
-    },
-    readCount: "8.5W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "1.8K",
-  },
-  {
-    rank: 3,
-    highlight: true,
-    title: {
-      zh: "我用 AI 做了一个爆款文章生成器",
-      en: "How I Built an AI Viral Article Generator",
-    },
-    readCount: "6.2W+",
-    metricLabel: { zh: "互动率", en: "Engagement" },
-    metricValue: "12%",
-  },
-  {
-    rank: 4,
-    title: {
-      zh: "游戏 UGC 节点式系统开发实战",
-      en: "Building Node-Based UGC Systems in Games",
-    },
-    readCount: "4.1W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "980",
-  },
-  {
-    rank: 5,
-    title: {
-      zh: "独立开发者的时间管理：少写代码多交付",
-      en: "Time Management for Indie Devs: Ship More, Code Less",
-    },
-    readCount: "3.8W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "860",
-  },
-  {
-    rank: 6,
-    title: {
-      zh: "Next.js + Three.js 搭建个人作品集",
-      en: "Building a Portfolio with Next.js + Three.js",
-    },
-    readCount: "3.2W+",
-    metricLabel: { zh: "互动率", en: "Engagement" },
-    metricValue: "9%",
-  },
-  {
-    rank: 7,
-    title: {
-      zh: "Python 自动化脚本：把重复工作交给机器",
-      en: "Python Automation: Let Scripts Handle the Grind",
-    },
-    readCount: "2.9W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "720",
-  },
-  {
-    rank: 8,
-    title: {
-      zh: "热点监控工具的技术架构拆解",
-      en: "Inside a Hotspot Monitoring Tool",
-    },
-    readCount: "2.5W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "640",
-  },
-  {
-    rank: 9,
-    title: {
-      zh: "从 0 到 1 做小工具：我的独立开发心得",
-      en: "Zero to One: Lessons from Building Small Tools",
-    },
-    readCount: "2.1W+",
-    metricLabel: { zh: "互动率", en: "Engagement" },
-    metricValue: "7%",
-  },
-  {
-    rank: 10,
-    title: {
-      zh: "2026 年值得关注的 5 个 AI 工具方向",
-      en: "5 AI Tool Trends Worth Watching in 2026",
-    },
-    readCount: "1.8W+",
-    metricLabel: { zh: "转发", en: "Shares" },
-    metricValue: "520",
-  },
-];
-
 export const gadgetItems: GadgetItem[] = [
   {
     title: { zh: "LLM 预算计算器", en: "LLM Budget Calculator" },
@@ -524,31 +406,31 @@ export const counters: { label: Localized; value: number; suffix?: string }[] = 
 
 export const contactCard: ContactCardContent = {
   title: { zh: "认识一下", en: "Get to know me" },
-  greeting: { zh: "你好，我是 Ye Maizi。", en: "Hi, I'm Maggie." },
+  greeting: { zh: "你好，我是小叶。", en: "Hi, I'm Xiaoye." },
   intro: {
     zh: "我做一些解决日常问题的小工具。",
     en: "I build small tools to solve everyday problems.",
   },
-  backgroundLabel: { zh: "背景：", en: "Background:" },
+  backgroundLabel: { zh: "过去：", en: "Past:" },
   backgroundItems: [
     {
-      zh: "C++ / MFC 桌面开发（2 年）",
-      en: "C++ / MFC desktop development (2 years)",
+      zh: "做过桌面软件开发",
+      en: "Desktop software development",
     },
     {
-      zh: "游戏 UGC 内容创作（节点式系统）",
-      en: "Game UGC content creation (node-based systems)",
+      zh: "参与过游戏内容创作开发",
+      en: "Game content creation & tooling",
     },
   ],
   nowLabel: { zh: "现在：", en: "Now:" },
   nowText: {
-    zh: "我正在专注做小工具，并探索 AI 应用。",
-    en: "I'm focusing on building small tools and exploring AI applications.",
+    zh: "正在探索 AI 应用与独立开发，\n希望做出一些真正被使用的小工具。",
+    en: "Exploring AI applications and indie development,\nhoping to build small tools that people actually use.",
   },
   qrCaption: { zh: "扫码关注公众号", en: "Scan to follow on WeChat" },
   footer: {
-    zh: "一起学习，一起进步 ✨",
-    en: "Let's learn and grow together ✨",
+    zh: "持续构建，持续学习",
+    en: "Keep building. Keep learning.",
   },
 };
 

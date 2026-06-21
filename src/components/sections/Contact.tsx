@@ -79,7 +79,7 @@ export function Contact() {
                     <p className="font-medium text-foreground">
                       {pick(contactCard.nowLabel)}
                     </p>
-                    <p className="mt-1">{pick(contactCard.nowText)}</p>
+                    <p className="mt-1 whitespace-pre-line">{pick(contactCard.nowText)}</p>
                   </div>
                 </div>
 
