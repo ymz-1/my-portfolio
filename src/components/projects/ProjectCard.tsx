@@ -36,7 +36,12 @@ export function ProjectCardView({ project, visitLabel, codeLabel }: Props) {
           <img
             src={project.coverSrc}
             alt={project.title}
-            className="max-h-full w-auto object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-105"
+            className={cn(
+              "drop-shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-105",
+              project.coverFit === "cover"
+                ? "h-full w-full object-cover"
+                : "max-h-full w-auto object-contain",
+            )}
           />
         </div>
       ) : (

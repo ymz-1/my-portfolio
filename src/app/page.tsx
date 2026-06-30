@@ -4,7 +4,6 @@ import { BackToTop } from "@/components/layout/BackToTop";
 import { Hero } from "@/components/sections/Hero";
 import { GadgetHub } from "@/components/sections/GadgetHub";
 import { ArticleList } from "@/components/sections/ArticleList";
-import { TechStack } from "@/components/sections/TechStack";
 import { Projects } from "@/components/sections/Projects";
 import { Contact } from "@/components/sections/Contact";
 
@@ -17,7 +16,6 @@ export default function Home() {
         <Projects />
         <ArticleList />
         <GadgetHub />
-        <TechStack />
         <Contact />
       </main>
       <Footer />

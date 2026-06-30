@@ -1,14 +1,103 @@
 "use client";
 
-import Image from "next/image";
+import { FormEvent, useState } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { contactCard } from "@/content/data";
 import { cn } from "@/lib/utils";
 
+type SubscribeStatus =
+  | "idle"
+  | "loading"
+  | "success"
+  | "pending"
+  | "duplicate"
+  | "invalid"
+  | "rate_limit"
+  | "not_configured"
+  | "error";
+
+type SubscribeResponse =
+  | { ok: true; status: "subscribed" | "pending_confirmation" }
+  | { error: string };
+
 export function Contact() {
-  const { pick } = useLanguage();
+  const { t, pick } = useLanguage();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<SubscribeStatus>("idle");
+
+  async function handleSubscribe(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const normalized = email.trim().toLowerCase();
+
+    if (!normalized) {
+      setStatus("invalid");
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/newsletter/subscribe/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: normalized }),
+      });
+
+      const data = (await res.json()) as SubscribeResponse;
+
+      if (res.ok && "ok" in data && data.ok) {
+        setStatus(data.status === "pending_confirmation" ? "pending" : "success");
+        setEmail("");
+        return;
+      }
+
+      const err = "error" in data ? data.error : "upstream_error";
+      switch (err) {
+        case "invalid_email":
+          setStatus("invalid");
+          break;
+        case "duplicate":
+          setStatus("duplicate");
+          break;
+        case "rate_limit":
+          setStatus("rate_limit");
+          break;
+        case "not_configured":
+          setStatus("not_configured");
+          break;
+        default:
+          setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  const feedback =
+    status === "success"
+      ? t.contact.subscribeSuccess
+      : status === "pending"
+        ? t.contact.subscribePending
+        : status === "duplicate"
+          ? t.contact.subscribeDuplicate
+          : status === "invalid"
+            ? t.contact.subscribeInvalid
+            : status === "rate_limit"
+              ? t.contact.subscribeRateLimit
+              : status === "not_configured"
+                ? t.contact.subscribeNotConfigured
+                : status === "error"
+                  ? t.contact.subscribeError
+                  : null;
+
+  const feedbackIsError =
+    status === "invalid" ||
+    status === "duplicate" ||
+    status === "rate_limit" ||
+    status === "not_configured" ||
+    status === "error";
 
   return (
     <section id="contact" className="relative scroll-mt-20 py-24 sm:py-32">
@@ -20,36 +109,59 @@ export function Contact() {
         <Reveal>
           <GlowCard className="p-8 sm:p-10">
             <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
-              {/* 左侧：公众号二维码 */}
-              <div className="flex shrink-0 flex-col items-center md:w-[11rem]">
-                <div
-                  className={cn(
-                    "grid aspect-square w-36 place-items-center rounded-xl sm:w-40",
-                    contactCard.qrSrc
-                      ? "bg-white p-1 shadow-lg shadow-black/20"
-                      : "border border-dashed border-white/15 bg-white/[0.04]",
-                  )}
-                >
-                  {contactCard.qrSrc ? (
-                    <Image
-                      src={contactCard.qrSrc}
-                      alt={pick(contactCard.qrCaption)}
-                      width={160}
-                      height={160}
-                      className="h-full w-full rounded-[10px] object-cover"
-                    />
-                  ) : (
-                    <span className="select-none font-mono text-xs text-white/20">
-                      QR
-                    </span>
-                  )}
-                </div>
-                <p className="mt-3 text-center text-sm text-muted">
-                  {pick(contactCard.qrCaption)}
+              <div className="mx-auto w-full max-w-xs shrink-0 md:mx-0 md:w-52">
+                <p className="text-sm font-medium text-foreground">
+                  {t.contact.subscribeLabel}
                 </p>
+                <p className="mt-1 text-xs leading-relaxed text-muted">
+                  {t.contact.subscribeHint}
+                </p>
+
+                <form onSubmit={handleSubscribe} className="mt-4 space-y-2.5">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (status !== "idle" && status !== "loading") setStatus("idle");
+                    }}
+                    placeholder={t.contact.subscribePlaceholder}
+                    autoComplete="email"
+                    disabled={status === "loading"}
+                    className={cn(
+                      "w-full rounded-lg border bg-white/[0.04] px-3 py-2.5 text-sm text-foreground outline-none transition-colors",
+                      "placeholder:text-muted/70",
+                      "focus:border-brand/40 focus:ring-2 focus:ring-brand/20",
+                      "disabled:cursor-not-allowed disabled:opacity-60",
+                      status === "invalid"
+                        ? "border-red-400/50"
+                        : "border-white/12",
+                    )}
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full rounded-lg bg-brand px-3 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand/90 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {status === "loading"
+                      ? t.contact.subscribing
+                      : t.contact.subscribeButton}
+                  </button>
+                </form>
+
+                {feedback ? (
+                  <p
+                    className={cn(
+                      "mt-3 text-xs leading-relaxed",
+                      feedbackIsError ? "text-red-400/90" : "text-brand",
+                    )}
+                    role="status"
+                  >
+                    {feedback}
+                  </p>
+                ) : null}
               </div>
 
-              {/* 右侧：介绍文案 */}
               <div className="min-w-0 flex-1">
                 <h2 className="text-2xl font-bold tracking-tight sm:text-[1.75rem]">
                   {pick(contactCard.title)}

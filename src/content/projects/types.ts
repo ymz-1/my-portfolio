@@ -19,7 +19,15 @@ export type ProjectDetail = {
   tags: string[];
   accent: string;
   coverSrc?: string;
+  /** 封面图填充方式，终端类截图建议 cover */
+  coverFit?: "contain" | "cover";
   featured?: boolean;
+  /** 项目简介卡片内的特性 pills */
+  featureTags?: string[];
+  /** 快速开始代码块 */
+  quickStart?: Localized;
+  license?: string;
+  author?: Localized;
   /** 站内演示路径，如 /tools/ai-article */
   demoUrl?: string;
   /** 站外演示（无 demoUrl 时使用） */
@@ -49,6 +57,7 @@ export type ProjectCard = Pick<
   | "tags"
   | "accent"
   | "coverSrc"
+  | "coverFit"
   | "featured"
   | "demoUrl"
   | "liveUrl"
@@ -63,6 +72,7 @@ export function toProjectCard(project: ProjectDetail): ProjectCard {
     tags,
     accent,
     coverSrc,
+    coverFit,
     featured,
     demoUrl,
     liveUrl,
@@ -75,6 +85,7 @@ export function toProjectCard(project: ProjectDetail): ProjectCard {
     tags,
     accent,
     coverSrc,
+    coverFit,
     featured,
     demoUrl,
     liveUrl,

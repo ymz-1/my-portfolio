@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Noto_Sans_SC, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageProvider";
+import { profile } from "@/content/data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +26,16 @@ const pressStart = Press_Start_2P({
   weight: ["400"],
 });
 
-const siteName = "小叶 · AI 工具开发";
-const siteTitle = "小叶 — AI 工具开发";
+const siteName = `${profile.name} · AI 工具开发`;
+const siteTitle = `${profile.name} — AI 工具开发`;
 const siteDescription =
-  "小叶的个人站。曾从事 C++ 开发，现专注 AI 应用与工具实践，记录独立开发与小工具探索过程。";
+  `${profile.name}的个人站。曾从事 C++ 开发，现专注 AI 应用与工具实践，记录独立开发与小工具探索过程。`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
   title: {
     default: siteTitle,
-    template: "%s · 小叶",
+    template: `%s · ${profile.name}`,
   },
   description: siteDescription,
   keywords: [
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     "Next.js",
     "blog",
   ],
-  authors: [{ name: "小叶" }],
+  authors: [{ name: profile.name }],
   openGraph: {
     type: "website",
     title: siteTitle,

@@ -3,9 +3,8 @@ import type { Dictionary } from "./en";
 export const zh: Dictionary = {
   nav: {
     home: "首页",
-    social: "小工具",
+    social: "开发者工具",
     articles: "文章",
-    stack: "技术栈",
     projects: "项目",
     contact: "联系",
   },
@@ -13,7 +12,6 @@ export const zh: Dictionary = {
     home: "🏠",
     projects: "🔧",
     articles: "📄",
-    stack: "⚙️",
     social: "🧰",
     contact: "✉️",
   },
@@ -42,11 +40,8 @@ export const zh: Dictionary = {
     backHome: "返回首页",
   },
   gadgets: {
-    title: "好玩的小工具",
+    title: "开发者工具",
     note: "自己做的，免费用",
-  },
-  stack: {
-    title: "技能栈",
   },
   projects: {
     title: "项目",
@@ -56,7 +51,10 @@ export const zh: Dictionary = {
   },
   projectDetail: {
     back: "返回项目",
-    intro: "项目介绍",
+    intro: "项目简介",
+    features: "核心特性",
+    quickStart: "快速开始",
+    viewProjects: "查看更多项目",
     techStack: "技术栈",
     architecture: "架构设计",
     frontend: "前端",
@@ -71,6 +69,18 @@ export const zh: Dictionary = {
     title: "一起做点东西吧",
     subtitle: "有点子、想组 Game Jam 队伍，或者只是想唠唠技术？我的邮箱随时开着。",
     cta: "给我发消息",
+    subscribeLabel: "订阅更新",
+    subscribeHint: "新文章与项目进展，第一时间通知你。",
+    subscribePlaceholder: "输入你的邮箱",
+    subscribeButton: "订阅",
+    subscribeSuccess: "已订阅，感谢关注！",
+    subscribePending: "确认邮件已发送，请查收邮箱并点击链接完成订阅。",
+    subscribeDuplicate: "这个邮箱已经订阅过了。",
+    subscribeInvalid: "请输入有效邮箱地址",
+    subscribeError: "订阅失败，请稍后再试。",
+    subscribeRateLimit: "请求过于频繁，请明天再试。",
+    subscribeNotConfigured: "订阅服务暂未配置，请稍后再试。",
+    subscribing: "提交中…",
   },
   footer: {
     rights: "由过量咖啡因驱动。",

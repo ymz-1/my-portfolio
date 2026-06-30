@@ -27,7 +27,7 @@ const devRewrites = async () => [
     destination: `${insightBackendUrl}/socket.io/:path*`,
   },
   {
-    source: "/api/:path*",
+    source: "/api/:path((?!newsletter).*)",
     destination: `${pythonBackendUrl}/api/:path*`,
   },
 ];
@@ -43,6 +43,10 @@ const nextConfig: NextConfig = {
       test: /\.md$/,
       type: "asset/source",
     });
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    };
     return config;
   },
   turbopack: {

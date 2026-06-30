@@ -2,17 +2,17 @@ import type { ProjectDetail } from "./types";
 
 export const aiArticle: ProjectDetail = {
   slug: "ai-article",
-  title: "AI 爆款文章生成",
+  title: "图文创作平台",
   description: {
     zh: "基于多智能体编排的 AI 文章创作平台，从选题、大纲到成稿一站式完成，支持实时进度与图文混排。",
     en: "Multi-agent AI writing platform — topic to outline to finished draft in one flow, with live progress and rich media.",
   },
   tags: ["Python", "FastAPI", "Vue", "AI"],
-  demoUrl: "/tools/ai-article",
-  codeUrl: "https://github.com",
+  codeUrl: "https://github.com/ymz-1/inkflow",
   coverSrc: "/projects/ai-article.png",
   accent: "from-emerald-500/25 to-lime-400/10",
   featured: true,
+  featureTags: ["多 Agent", "SSE 流式", "Vue 3", "FastAPI", "SQLite"],
   intro: {
     zh: "这是一个面向内容创作者的 AI 写作工作台。用户输入主题后，系统通过多智能体流水线自动完成选题分析、大纲生成、分段撰写与润色，全程以 SSE 推送进度，前端实时展示每个阶段的输出。我负责整体架构设计、后端编排逻辑与 Vue 前端交互实现。",
     en: "An AI writing workspace for content creators. Given a topic, a multi-agent pipeline handles ideation, outlining, drafting, and polishing — with SSE streaming progress to a Vue frontend that renders each stage in real time. I owned the architecture, backend orchestration, and frontend UX.",
@@ -63,7 +63,42 @@ export const aiArticle: ProjectDetail = {
         en: "Each agent has a single responsibility and swappable model. The orchestrator controls order and context handoff, making new writing steps easy to add.",
       },
     },
+    {
+      title: { zh: "SQLite 会话持久化", en: "SQLite session persistence" },
+      content: {
+        zh: "任务、大纲与草稿写入 SQLite，刷新页面或中断后可从最近阶段恢复，避免长流程重复生成。",
+        en: "Tasks, outlines, and drafts persist in SQLite so users can resume from the last stage after refresh or interruption.",
+      },
+    },
   ],
+  quickStart: {
+    zh: `# 克隆仓库
+git clone https://github.com/ymz-1/inkflow.git
+cd inkflow
+
+# 后端
+cd backend
+pip install -r requirements.txt
+cp .env.example .env   # 填入 OPENAI_API_KEY
+uvicorn main:app --reload --port 8000
+
+# 前端（新终端）
+cd frontend
+npm install && npm run dev`,
+    en: `# Clone
+git clone https://github.com/ymz-1/inkflow.git
+cd inkflow
+
+# Backend
+cd backend
+pip install -r requirements.txt
+cp .env.example .env   # set OPENAI_API_KEY
+uvicorn main:app --reload --port 8000
+
+# Frontend (new terminal)
+cd frontend
+npm install && npm run dev`,
+  },
 };
 
 export default aiArticle;

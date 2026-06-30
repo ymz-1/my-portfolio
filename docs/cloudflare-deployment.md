@@ -188,3 +188,46 @@ npm run dev
 ---
 
 *文档生成时间：2026-06-18*
+
+---
+
+## 9. 文章阅读统计（KV + Pages Functions）
+
+静态导出站点通过 **`functions/`** 提供阅读数 API，与 `out/` 一同部署到 Cloudflare Pages。
+
+### 9.1 创建 KV
+
+1. Cloudflare Dashboard → **Workers & Pages** → **KV**
+2. 创建 namespace（例如 `article-views`）
+3. 复制 **Namespace ID**，填入仓库根目录 [`wrangler.toml`](../wrangler.toml) 的 `[[kv_namespaces]]` → `id` / `preview_id`
+
+### 9.2 Pages 绑定
+
+Pages 项目 → **Settings** → **Functions** → **KV namespace bindings**：
+
+| Variable name | KV namespace |
+|---------------|----------------|
+| `ARTICLE_VIEWS` | 上一步创建的 namespace |
+
+### 9.3 API 路径
+
+| 路径 | 方法 | 说明 |
+|------|------|------|
+| `/api/articles/views/` | GET | 批量返回 `{ views: { "stories/slug": 123, ... } }` |
+| `/api/articles/{category}/{slug}/view/` | GET | 读取当前计数 |
+| `/api/articles/{category}/{slug}/view/` | POST | 访问 +1，返回 `{ count }` |
+
+KV key 格式：`{category}/{slug}`（如 `stories/roocode-retrospective`）。
+
+### 9.4 本地调试 Functions
+
+先构建静态站，再用 Wrangler 启动 Pages 开发服务器（需已登录 `wrangler login`）：
+
+```bash
+npm run build:site
+npx wrangler pages dev out
+```
+
+`next dev` 不会加载 `functions/`，首页阅读数在本地可能显示 `0`；不影响页面渲染。
+
+---

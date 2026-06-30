@@ -1,6 +1,6 @@
 import stories from "./stories";
 import notes from "./notes";
-import type { ArticleCategory, ArticleDetail } from "./types";
+import type { ArticleCategory, ArticleDetail, ArticleListItem } from "./types";
 
 export const storiesArticles = stories;
 export const notesArticles = notes;
@@ -25,4 +25,16 @@ export function getPreviewArticles(category: ArticleCategory, limit = 3): Articl
   return getArticlesByCategory(category).slice(0, limit);
 }
 
-export type { ArticleCategory, ArticleDetail, ArticlePreview } from "./types";
+/** 首页文章卡片：stories 在前，notes 在后 */
+export function getHomeArticleList(): ArticleListItem[] {
+  return allArticles.map((article) => ({
+    slug: article.slug,
+    category: article.category,
+    title: article.title,
+    date: article.date,
+    tags: article.tags,
+    highlight: article.highlight,
+  }));
+}
+
+export type { ArticleCategory, ArticleDetail, ArticlePreview, ArticleListItem } from "./types";

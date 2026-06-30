@@ -112,8 +112,8 @@ export function Hero() {
             />
           </div>
 
-          <h1 className="text-balance text-3xl font-bold tracking-[0.18em] sm:text-4xl">
-            <span className="text-gradient">{profile.heroTitle}</span>
+          <h1 className="text-balance text-2xl font-bold tracking-[0.06em] sm:text-3xl">
+            <span className="text-gradient">{pick(profile.heroTitle)}</span>
           </h1>
 
           {/* Identity / headline */}
@@ -162,47 +162,28 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Now status */}
-        <motion.div
+        {/* Scroll hint (mobile) */}
+        <motion.a
+          href="#projects"
+          aria-label={t.hero.scroll}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="relative z-10 mt-8 flex flex-col items-center gap-4"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="relative z-10 mt-3 flex flex-col items-center gap-2 text-xs text-muted sm:hidden"
         >
-          <div className="inline-flex max-w-full items-center gap-3 rounded-xl border border-dashed border-white/15 bg-white/5 px-4 py-2.5 font-mono text-xs text-muted">
-            <span className="shrink-0 rounded-sm bg-brand/15 px-2 py-1 font-pixel text-[8px] leading-none text-brand">
-              {t.hero.now}
-            </span>
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-            </span>
-            <span className="truncate">{pick(profile.now)}</span>
-          </div>
-
-          {/* Mobile scroll hint — in flow so it stays visible below the card */}
-          <motion.a
-            href="#projects"
-            aria-label={t.hero.scroll}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="flex flex-col items-center gap-2 pt-2 text-xs text-muted sm:hidden"
-          >
-            {t.hero.scroll}
-            <ArrowDownIcon className="h-4 w-4 animate-bounce" />
-          </motion.a>
-        </motion.div>
+          {t.hero.scroll}
+          <ArrowDownIcon className="h-4 w-4 animate-bounce" />
+        </motion.a>
       </div>
 
-      {/* Desktop scroll hint */}
+      {/* Scroll hint (desktop) */}
       <motion.a
         href="#projects"
         aria-label={t.hero.scroll}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted sm:flex"
+        transition={{ delay: 0.7, duration: 0.6 }}
+        className="absolute bottom-24 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted sm:flex"
       >
         {t.hero.scroll}
         <ArrowDownIcon className="h-4 w-4 animate-bounce" />

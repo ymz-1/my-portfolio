@@ -43,7 +43,7 @@ Add /projects routes and case-study content, enable Cloudflare-friendly static b
 | 删除 | `src/app/tools/*/route.ts`（与静态导出不兼容） |
 | 部署 | `public/_redirects`（Cloudflare 工具路径） |
 | 文档 | `docs/architecture.md`、`docs/cloudflare-deployment.md` |
-| 品牌 | 小叶 / Xiaoye、`heroGreeting`、头像等 |
+| 品牌 | 小叶 / 8bit游牧人、`heroGreeting`、头像等 |
 | 导航 | 子页面 Navbar 链接适配 |
 
 **未纳入此次提交：**

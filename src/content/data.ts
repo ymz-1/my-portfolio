@@ -25,17 +25,6 @@ export type SocialCard = {
   description: Localized;
 };
 
-export type Skill = {
-  name: string;
-  /** 0 - 100 */
-  level: number;
-};
-
-export type SkillGroup = {
-  title: Localized;
-  skills: Skill[];
-};
-
 export type { ProjectCard as Project } from "@/content/projects";
 export { projects } from "@/content/projects";
 
@@ -62,10 +51,7 @@ export type ContactCardContent = {
   backgroundItems: Localized[];
   nowLabel: Localized;
   nowText: Localized;
-  qrCaption: Localized;
   footer: Localized;
-  /** 公众号二维码，暂缺时可留空 */
-  qrSrc?: string;
 };
 
 /** Hero 卡片底部的主要入口（GitHub / 公众号 / Email） */
@@ -78,21 +64,21 @@ export type CtaLink = {
 };
 
 export const profile = {
-  name: "小叶",
+  name: "8bit游牧人",
   /** Hero 大标题（渐变字） */
-  heroTitle: "XIAOYE",
-  nameLocalized: { zh: "小叶", en: "Xiaoye" } as Localized,
-  avatarInitials: "XY",
+  heroTitle: { zh: "8bit游牧人", en: "NoahXYZ" } as Localized,
+  nameLocalized: { zh: "8bit游牧人", en: "NoahXYZ" } as Localized,
+  avatarInitials: "NX",
   avatarSrc: "/avatar.png",
   location: { zh: "中国 · 某城市", en: "Somewhere, China" } as Localized,
   email: "ymaizi2023@163.com",
   headline: {
-    zh: "AI工具开发｜独立开发探索中",
-    en: "AI Tooling · Exploring indie development",
+    zh: "独立开发探索中",
+    en: "Exploring indie development",
   } as Localized,
   heroGreeting: {
-    zh: "嗨，我是小叶",
-    en: "Hey, I'm Xiaoye",
+    zh: "嗨，我是8bit游牧人",
+    en: "Hey, I'm NoahXYZ",
   } as Localized,
   quote: {
     zh: "做一些能解决实际问题的小工具，并记录探索过程。",
@@ -122,7 +108,7 @@ export const profile = {
 export const heroCtas: CtaLink[] = [
   {
     label: { zh: "GitHub", en: "GitHub" },
-    url: "https://github.com",
+    url: "https://github.com/ymz-1",
     icon: "github",
     external: true,
   },
@@ -141,8 +127,8 @@ export const heroCtas: CtaLink[] = [
 export const socials: SocialStat[] = [
   {
     platform: { zh: "GitHub", en: "GitHub" },
-    handle: "@yourname",
-    url: "https://github.com",
+    handle: "@ymz-1",
+    url: "https://github.com/ymz-1",
     metricLabel: { zh: "仓库", en: "Repos" },
     metricValue: "32",
     description: {
@@ -177,8 +163,8 @@ export const socials: SocialStat[] = [
 export const socialCards: SocialCard[] = [
   {
     platform: { zh: "GitHub", en: "GitHub" },
-    handle: { zh: "@yourname", en: "@yourname" },
-    url: "https://github.com",
+    handle: { zh: "@ymz-1", en: "@ymz-1" },
+    url: "https://github.com/ymz-1",
     icon: "github",
     stats: [
       { value: "32", label: { zh: "仓库", en: "repos" } },
@@ -256,36 +242,6 @@ export const socialCards: SocialCard[] = [
   },
 ];
 
-export const skillGroups: SkillGroup[] = [
-  {
-    title: { zh: "桌面 / 客户端", en: "Desktop / Client" },
-    skills: [
-      { name: "C++", level: 88 },
-      { name: "MFC / Win32", level: 82 },
-      { name: "Windows 桌面工具", level: 80 },
-      { name: "多线程 / 性能优化", level: 70 },
-    ],
-  },
-  {
-    title: { zh: "工具与自动化", en: "Tooling & Automation" },
-    skills: [
-      { name: "Python 脚本", level: 78 },
-      { name: "Lua / UGC 脚本", level: 72 },
-      { name: "Shell / 批处理", level: 68 },
-      { name: "Git / CI", level: 70 },
-    ],
-  },
-  {
-    title: { zh: "探索中", en: "Exploring" },
-    skills: [
-      { name: "AI 辅助开发", level: 66 },
-      { name: "TypeScript / Next.js", level: 58 },
-      { name: "React", level: 52 },
-      { name: "Three.js / R3F", level: 40 },
-    ],
-  },
-];
-
 export const gadgetItems: GadgetItem[] = [
   {
     title: { zh: "LLM 预算计算器", en: "LLM Budget Calculator" },
@@ -298,102 +254,111 @@ export const gadgetItems: GadgetItem[] = [
       { zh: "Token 分析", en: "Token analysis" },
       { zh: "成本管理", en: "Cost control" },
     ],
+    siteUrl: "/llm/",
   },
   {
-    title: { zh: "Ollama 管理器", en: "Ollama Manager" },
+    title: { zh: "LLM Token 计数器", en: "LLM Token Counter" },
     description: {
-      zh: "本地大模型管理工具，支持系统资源监控、智能模型推荐、局域网配置等功能。",
-      en: "Local LLM manager with resource monitoring, model recommendations, and LAN setup.",
+      zh: "统计并可视化 GPT、Claude、Gemini 和 Llama 的 Token，支持多模型切换与本地切分预览。",
+      en: "Count and visualize tokens for GPT, Claude, Gemini, and Llama with local segmentation preview.",
     },
-    badge: { zh: "免费下载", en: "Free download" },
+    badge: { zh: "在线使用", en: "Use online" },
     tags: [
-      { zh: "本地部署", en: "Local deploy" },
-      { zh: "模型管理", en: "Model mgmt" },
+      { zh: "Token 分析", en: "Token analysis" },
+      { zh: "Prompt 优化", en: "Prompt tuning" },
     ],
+    siteUrl: "/llm/token-counter/",
+  },
+  {
+    title: { zh: "上下文窗口检查器", en: "Context Window Checker" },
+    description: {
+      zh: "检查你的提示词是否能放入某个模型的上下文窗口，实时显示用量与剩余空间。",
+      en: "Check if your prompt fits a model's context window with live usage and remaining space.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "上下文", en: "Context" },
+      { zh: "Prompt 优化", en: "Prompt tuning" },
+    ],
+    siteUrl: "/llm/context-window/",
   },
   {
     title: { zh: "AI 知识库助手", en: "AI Knowledge Base" },
     description: {
-      zh: "基于 RAG 的个人知识库问答工具，支持文档导入与智能检索。",
-      en: "RAG-powered personal knowledge base with document import and smart search.",
+      zh: "上传 PDF，在浏览器本地完成语义检索与大模型问答，纯前端 RAG 演示。",
+      en: "Upload a PDF for local semantic search and LLM Q&A — a client-side RAG demo.",
     },
     badge: { zh: "在线使用", en: "Use online" },
     tags: [
       { zh: "RAG", en: "RAG" },
-      { zh: "知识管理", en: "Knowledge" },
+      { zh: "本地演示", en: "Local demo" },
     ],
+    siteUrl: "/llm/knowledge-base/",
   },
   {
-    title: { zh: "代码片段管理器", en: "Snippet Manager" },
+    title: { zh: "工具调用构建器", en: "Function Calling Builder" },
     description: {
-      zh: "开发者常用代码片段收集与快速检索，支持多语言标签分类。",
-      en: "Collect and search dev snippets with multi-language tag organization.",
-    },
-    badge: { zh: "免费下载", en: "Free download" },
-    tags: [
-      { zh: "效率工具", en: "Productivity" },
-      { zh: "代码管理", en: "Snippets" },
-    ],
-  },
-  {
-    title: { zh: "Markdown 转公众号", en: "Markdown to WeChat" },
-    description: {
-      zh: "一键将 Markdown 文章转换为微信公众号排版格式，支持代码高亮。",
-      en: "Convert Markdown to WeChat-ready formatting with syntax highlighting.",
+      zh: "可视化设计 AI 工具接口，自动生成 OpenAI、Claude、LangChain 可用的 JSON Schema。",
+      en: "Visually design AI tool interfaces and export OpenAI, Claude, and LangChain schemas.",
     },
     badge: { zh: "在线使用", en: "Use online" },
     tags: [
-      { zh: "写作工具", en: "Writing" },
-      { zh: "排版转换", en: "Formatting" },
+      { zh: "Function Calling", en: "Function Calling" },
+      { zh: "Agent 开发", en: "Agent dev" },
     ],
+    siteUrl: "/llm/function-calling/",
   },
   {
-    title: { zh: "Git 提交规范检查", en: "Git Commit Linter" },
+    title: { zh: "API Key 批量测试", en: "API Key Batch Tester" },
     description: {
-      zh: "自动检查 Git 提交信息是否符合 Conventional Commits 规范。",
-      en: "Lint commit messages against Conventional Commits conventions.",
+      zh: "批量验证 OpenAI / Anthropic API Key 是否可用，统计有效、无效、限流与请求延迟。",
+      en: "Batch-check OpenAI / Anthropic API keys — valid, invalid, rate-limited, and latency stats.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "API Key", en: "API Key" },
+      { zh: "批量检测", en: "Batch test" },
+    ],
+    siteUrl: "/llm/api-key-tester/",
+  },
+  {
+    title: { zh: "模型矩阵", en: "Model Matrix" },
+    description: {
+      zh: "一览各服务商对 GPT、Claude、Gemini 等主流模型的支持状态。",
+      en: "See which providers support GPT, Claude, Gemini, and other mainstream models.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "模型对比", en: "Model compare" },
+      { zh: "服务商", en: "Providers" },
+    ],
+    siteUrl: "/llm/model-matrix/",
+  },
+  {
+    title: { zh: "Prompt 模板生成器", en: "Prompt Template Generator" },
+    description: {
+      zh: "选择写作、编程或分析用途，自动生成含角色、目标、输出格式的结构化 Prompt 模板。",
+      en: "Pick writing, coding, or analysis — auto-generate structured prompts with role, goal, and output format.",
+    },
+    badge: { zh: "在线使用", en: "Use online" },
+    tags: [
+      { zh: "Prompt 工程", en: "Prompting" },
+      { zh: "本地演示", en: "Local demo" },
+    ],
+    siteUrl: "/llm/prompt-generator/",
+  },
+  {
+    title: { zh: "显存需求说明", en: "VRAM Requirements Guide" },
+    description: {
+      zh: "显存与 LLM 模型配置对照表，帮助你选择合适的显卡运行 AI 模型。",
+      en: "VRAM vs LLM model size reference to help you pick the right GPU for local inference.",
     },
     badge: { zh: "参考工具", en: "Reference" },
     tags: [
-      { zh: "Git", en: "Git" },
-      { zh: "规范检查", en: "Linting" },
+      { zh: "显卡选购", en: "GPU buying" },
+      { zh: "模型配置", en: "Model sizing" },
     ],
-  },
-  {
-    title: { zh: "批量文件重命名", en: "Batch File Renamer" },
-    description: {
-      zh: "Windows 桌面小工具，支持正则表达式、序号前缀等多种批量改名模式。",
-      en: "Windows desktop utility for batch rename with regex and numbering patterns.",
-    },
-    badge: { zh: "免费下载", en: "Free download" },
-    tags: [
-      { zh: "Windows", en: "Windows" },
-      { zh: "文件工具", en: "File tools" },
-    ],
-  },
-  {
-    title: { zh: "API 调试面板", en: "API Debug Panel" },
-    description: {
-      zh: "轻量级 REST API 测试工具，支持环境变量管理与请求历史记录。",
-      en: "Lightweight REST API tester with env vars and request history.",
-    },
-    badge: { zh: "在线使用", en: "Use online" },
-    tags: [
-      { zh: "API 测试", en: "API testing" },
-      { zh: "开发调试", en: "Debugging" },
-    ],
-  },
-  {
-    title: { zh: "Devlog 写作助手", en: "Devlog Writing Helper" },
-    description: {
-      zh: "帮助独立开发者记录开发过程，自动生成周报和项目更新摘要。",
-      en: "Help indie devs log progress and auto-generate weekly updates.",
-    },
-    badge: { zh: "立即报名", en: "Join waitlist" },
-    tags: [
-      { zh: "写作", en: "Writing" },
-      { zh: "独立开发", en: "Indie dev" },
-    ],
+    siteUrl: "/llm/vram/",
   },
 ];
 
@@ -406,7 +371,7 @@ export const counters: { label: Localized; value: number; suffix?: string }[] = 
 
 export const contactCard: ContactCardContent = {
   title: { zh: "认识一下", en: "Get to know me" },
-  greeting: { zh: "你好，我是小叶。", en: "Hi, I'm Xiaoye." },
+  greeting: { zh: "你好，我是8bit游牧人。", en: "Hi, I'm NoahXYZ." },
   intro: {
     zh: "我做一些解决日常问题的小工具。",
     en: "I build small tools to solve everyday problems.",
@@ -427,7 +392,6 @@ export const contactCard: ContactCardContent = {
     zh: "正在探索 AI 应用与独立开发，\n希望做出一些真正被使用的小工具。",
     en: "Exploring AI applications and indie development,\nhoping to build small tools that people actually use.",
   },
-  qrCaption: { zh: "扫码关注公众号", en: "Scan to follow on WeChat" },
   footer: {
     zh: "持续构建，持续学习",
     en: "Keep building. Keep learning.",
@@ -435,8 +399,8 @@ export const contactCard: ContactCardContent = {
 };
 
 export const contactLinks: ContactLink[] = [
-  { label: "GitHub", url: "https://github.com", icon: "github" },
-  { label: "WeChat", url: "https://example.com", icon: "wechat" },
+  { label: "GitHub", url: "https://github.com/ymz-1", icon: "github" },
+  { label: "WeChat", url: "#contact", icon: "wechat" },
   { label: "Email", url: `mailto:${profile.email}`, icon: "mail" },
 ];
 
@@ -445,6 +409,5 @@ export const navSections = [
   "projects",
   "articles",
   "social",
-  "stack",
   "contact",
 ] as const;

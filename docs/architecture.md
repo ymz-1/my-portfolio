@@ -142,10 +142,10 @@ src/components/
 
 | slug | 标题 | 详情完整度 | 演示 |
 |------|------|------------|------|
-| `ai-article` | AI 爆款文章生成 | ✅ 完整 | `/tools/ai-article/` |
+| `ai-article` | 图文创作平台 | ✅ 完整 | `/tools/ai-article/` |
 | `insight-radar` | Insight Radar | ✅ 完整 | `/tools/insight-radar/` |
 | `ai-dev-companion` | AI Dev Companion | ⏳ placeholder | — |
-| `this-portfolio` | This Portfolio | ⏳ placeholder | 外链 |
+| `ai-model-router` | AI 模型路由器 | ✅ 完整 | 外链 |
 
 **卡片交互：**
 
@@ -173,7 +173,7 @@ src/components/
 
 ---
 
-## 4. 嵌入工具：AI 爆款文章
+## 4. 嵌入工具：图文创作平台
 
 ### 4.1 前端（Vue）
 
@@ -305,6 +305,8 @@ cd insight-radar/server && npm run dev
 npm run dev
 ```
 
+**文章阅读量（可选）**：默认关闭，不会在 dev 终端请求 `/api/articles/*`。需要时在 `.env.local` 设置 `NEXT_PUBLIC_ARTICLE_VIEWS_API=true`，并启动 `python-backend`（`:8567`）。
+
 访问：
 
 - 作品集：http://localhost:3000
@@ -428,7 +430,7 @@ WebSocket /socket.io → 新热点 notification
 | CF Pages 静态部署 | ✅ 主站可用 |
 | 工具完整功能（无后端） | ❌ API/SSE/Socket 不可用 |
 | 无后端 Demo 简化版 | ⏸ **暂缓**（方案已讨论，见会话记录） |
-| 占位项目详情 | `ai-dev-companion`、`this-portfolio` 待补内容 |
+| 占位项目详情 | `ai-dev-companion` 待补内容 |
 | 占位个人资料 / GitHub 链接 | `data.ts`、项目 `codeUrl` 仍为 example.com |
 | `npm run start` | 静态导出模式下不适用（无 Node 服务器） |
 

@@ -8,10 +8,14 @@ export type ArticleDetail = {
   title: Localized;
   body: Localized;
   date?: string;
-  readCount?: string;
+  tags?: string[];
+  /** 首页卡片序号高亮（橙色） */
+  highlight?: boolean;
 };
 
 export type ArticlePreview = Pick<
   ArticleDetail,
-  "slug" | "category" | "title" | "readCount"
+  "slug" | "category" | "title" | "date" | "tags" | "highlight"
 >;
+
+export type ArticleListItem = ArticlePreview;
