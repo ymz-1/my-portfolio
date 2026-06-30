@@ -199,7 +199,7 @@ npm run dev
 
 1. Cloudflare Dashboard → **Workers & Pages** → **KV**
 2. 创建 namespace（例如 `article-views`）
-3. 复制 **Namespace ID**，填入仓库根目录 [`wrangler.toml`](../wrangler.toml) 的 `[[kv_namespaces]]` → `id` / `preview_id`
+3. 复制 **Namespace ID**（可选）填入 [`wrangler.toml`](../wrangler.toml) 的 `[[kv_namespaces]]`；**不要写占位 id**（如全 0），否则 Deploy 会报 `KV namespace not found`。也可只在 Dashboard 绑定，不写 wrangler.toml。
 
 ### 9.2 Pages 绑定
 

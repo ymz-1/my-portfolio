@@ -2,9 +2,13 @@ name = "my-portfolio"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "out"
 
-# Create a KV namespace in Cloudflare Dashboard, then replace the id below.
-# Pages → Settings → Functions → KV namespace bindings: ARTICLE_VIEWS
-[[kv_namespaces]]
-binding = "ARTICLE_VIEWS"
-id = "00000000000000000000000000000000"
-preview_id = "00000000000000000000000000000000"
+# Optional: article view counts (functions/api/articles/*).
+# Do NOT add placeholder KV ids here — deploy will fail.
+# 1. Dashboard → Workers & Pages → KV → create namespace (e.g. article-views)
+# 2. Pages project → Settings → Functions → KV namespace bindings
+#    Variable: ARTICLE_VIEWS → your namespace
+# 3. (Optional) add real ids below for local `wrangler pages dev`:
+# [[kv_namespaces]]
+# binding = "ARTICLE_VIEWS"
+# id = "<your-namespace-id>"
+# preview_id = "<your-namespace-id>"
