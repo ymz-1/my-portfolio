@@ -77,7 +77,7 @@ export const profile = {
     en: "Exploring indie development",
   } as Localized,
   heroGreeting: {
-    zh: "嗨，我是8bit游牧人",
+    zh: "嗨，我是小叶",
     en: "Hey, I'm NoahXYZ",
   } as Localized,
   quote: {
