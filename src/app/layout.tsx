@@ -26,8 +26,8 @@ const pressStart = Press_Start_2P({
   weight: ["400"],
 });
 
-const siteName = `${profile.name} · AI 工具开发`;
-const siteTitle = `${profile.name} — AI 工具开发`;
+const siteName = `${profile.name} `;
+const siteTitle = `${profile.name} `;
 const siteDescription =
   `${profile.name}的个人站。曾从事 C++ 开发，现专注 AI 应用与工具实践，记录独立开发与小工具探索过程。`;
 

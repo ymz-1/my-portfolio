@@ -40,8 +40,8 @@ export const aiModelRouter: ProjectDetail = {
   },
   media: [
     {
-      src: "/projects/ai-model-router.png",
-      alt: { zh: "AI 模型路由器", en: "Model Bridge gateway" },
+      src: "/projects/picture/model_bridge_run.png",
+      alt: { zh: "Model Bridge 运行截图", en: "Model Bridge runtime screenshot" },
       caption: {
         zh: "统一 OpenAI 兼容 API 与多 Provider 管理",
         en: "Unified OpenAI-compatible API and multi-provider admin",

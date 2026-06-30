@@ -39,8 +39,8 @@ export const roocode: ProjectDetail = {
   },
   media: [
     {
-      src: "/projects/roocode.png",
-      alt: { zh: "RooCode 终端界面", en: "RooCode terminal UI" },
+      src: "/projects/picture/roocode_run.png",
+      alt: { zh: "RooCode 运行截图", en: "RooCode runtime screenshot" },
       caption: {
         zh: "Textual TUI：流式输出与工具调用可视化",
         en: "Textual TUI with streaming output and tool-call visualization",

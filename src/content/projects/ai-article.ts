@@ -40,8 +40,8 @@ export const aiArticle: ProjectDetail = {
   },
   media: [
     {
-      src: "/projects/ai-article.png",
-      alt: { zh: "AI 文章生成主界面", en: "AI article generator main UI" },
+      src: "/projects/picture/ai-article_run.png",
+      alt: { zh: "AI 文章生成运行截图", en: "AI article generator runtime screenshot" },
       caption: {
         zh: "主界面：输入主题后实时展示各 Agent 阶段输出",
         en: "Main UI: live output from each agent stage after entering a topic",

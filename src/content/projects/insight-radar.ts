@@ -39,8 +39,8 @@ export const insightRadar: ProjectDetail = {
   },
   media: [
     {
-      src: "/projects/radar.png",
-      alt: { zh: "热点雷达仪表盘", en: "Insight Radar dashboard" },
+      src: "/projects/picture/insight-radar_run.png",
+      alt: { zh: "Insight Radar 运行截图", en: "Insight Radar runtime screenshot" },
       caption: {
         zh: "关键词订阅与实时热点卡片推送",
         en: "Keyword subscriptions and live hotspot cards",

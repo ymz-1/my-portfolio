@@ -39,8 +39,8 @@ export const buriedPoint: ProjectDetail = {
   },
   media: [
     {
-      src: "/projects/buried-point.png",
-      alt: { zh: "埋点 SDK 架构示意", en: "Analytics SDK architecture" },
+      src: "/projects/picture/anchorpoint_test_run.png",
+      alt: { zh: "AnchorPoint 运行截图", en: "AnchorPoint runtime screenshot" },
       caption: {
         zh: "Persist-first 上报管道与 C API 集成",
         en: "Persist-first pipeline and C API integration",

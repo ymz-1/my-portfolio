@@ -39,8 +39,8 @@ export const aiDevCompanion: ProjectDetail = {
   },
   media: [
     {
-      src: "/projects/llm-eval.png",
-      alt: { zh: "LLM 评测中心主界面", en: "ModArena main UI" },
+      src: "/projects/picture/modleArea_run.png",
+      alt: { zh: "ModArena 运行截图", en: "ModArena runtime screenshot" },
       caption: {
         zh: "多模型并排对比与成本统计",
         en: "Side-by-side model comparison with cost stats",

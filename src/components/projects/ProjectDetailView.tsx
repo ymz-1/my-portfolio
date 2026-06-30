@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { GlowCard } from "@/components/ui/GlowCard";
+import { HighlightedCode } from "@/components/ui/HighlightedCode";
 import {
   GitHubIcon,
   WrenchIcon,
@@ -280,9 +281,7 @@ export function ProjectDetailView({ project }: Props) {
             </h2>
           </div>
           <div className="p-5">
-            <pre className="overflow-x-auto rounded-xl bg-black/40 p-4 font-mono text-sm leading-7 text-foreground/90 whitespace-pre-wrap">
-              {pick(project.quickStart)}
-            </pre>
+            <HighlightedCode code={pick(project.quickStart)} language="bash" />
           </div>
         </GlowCard>
       )}
